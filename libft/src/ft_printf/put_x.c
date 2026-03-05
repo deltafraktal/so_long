@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   put_x.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/04 04:21:29 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/05 02:00:04 by dgeara           ###   ########.fr       */
+/*   Created: 2025/10/21 14:58:38 by dgeara            #+#    #+#             */
+/*   Updated: 2026/03/05 01:33:06 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "libft.h"
 
-int	close_win(void *param)
+int	put_x(unsigned int n, char *base)
 {
-	(void)param;
-	exit(0);
-	return (0);
-}
+	int		count;
+	size_t	base_len;
 
-int	main(void)
-{
-	void	*mlx;
-	void	*win;
-
-	mlx = mlx_init();
-	if (!mlx)
-		return (1);
-	win = mlx_new_window(mlx, 1200, 600, "MiniLibX Test");
-	if (!win)
-		return (1);
-
-	mlx_hook(win, 17, 0, close_win, NULL);
-	mlx_loop(mlx);
-	return (0);
+	count = 0;
+	base_len = ft_strlen(base);
+	if (n >= base_len)
+		count += put_x(n / base_len, base);
+	count += put_c(base[n % base_len]);
+	return (count);
 }

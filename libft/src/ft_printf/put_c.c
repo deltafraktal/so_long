@@ -1,37 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   put_c.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/04 04:21:29 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/05 02:00:04 by dgeara           ###   ########.fr       */
+/*   Created: 2025/10/21 08:34:28 by dgeara            #+#    #+#             */
+/*   Updated: 2026/03/05 01:32:39 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "libft.h"
 
-int	close_win(void *param)
+int	put_c(int c)
 {
-	(void)param;
-	exit(0);
-	return (0);
-}
-
-int	main(void)
-{
-	void	*mlx;
-	void	*win;
-
-	mlx = mlx_init();
-	if (!mlx)
-		return (1);
-	win = mlx_new_window(mlx, 1200, 600, "MiniLibX Test");
-	if (!win)
-		return (1);
-
-	mlx_hook(win, 17, 0, close_win, NULL);
-	mlx_loop(mlx);
-	return (0);
+	return (write(1, &c, 1));
 }

@@ -1,59 +1,104 @@
-NAME = so_long
-LIBFT = libft/libft.a
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
-RM = rm -f
+# ══════════════════════════════════════════════════════════════════════════════
+#  so_long — Makefile
+# ══════════════════════════════════════════════════════════════════════════════
 
-SRC_DIR = src
-OBJ_DIR = obj
+NAME        = so_long
+CC          = cc
+CFLAGS      = -Wall -Wextra -Werror
+RM          = rm -f
+SRC_DIR     = src
+OBJ_DIR     = obj
 
-SRCS = \
-	$(SRC_DIR)/main.c \
-	
-OBJ = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+# ── Colors ────────────────────────────────────────────────────────────────────
+END         := \033[0m
+BOLD        := \033[1m
+GREEN       := \033[32m
+BLUE        := \033[34m
+PURPLE      := \033[35m
+YELLOW      := \033[33m
 
-# Colors
-END		:= \033[0m
-BOLD	:= \033[1m
-GREEN	:= \033[32m
-BLUE	:= \033[34m
-PURPLE	:= \033[35m
-YELLOW	:= \033[33m
+# ── OS detection ──────────────────────────────────────────────────────────────
+UNAME := $(shell uname)
+
+MLX_DIR  = mlx
+MLX_LIB  = $(MLX_DIR)/libmlx.a
+
+ifeq ($(UNAME), Darwin)
+    $(info 🍎 macOS detected → OpenGL/AppKit)
+    MLX_FLAG = -Lmlx -lmlx -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
+    INC      = -I/opt/X11/include -Imlx -Iinclude
+else
+    $(info 🐧 Linux detected → X11/Xext)
+    MLX_FLAG = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
+    INC      = -I/usr/include -Imlx -Iinclude
+endif
+
+$(info 🔗 MLX_FLAG = $(MLX_FLAG))
+# ──────────────────────────────────────────────────────────────────────────────
+
+LIBFT       = libft/libft.a
+
+SRCS        = \
+    $(SRC_DIR)/main.c
+
+OBJ         = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 TOTAL_FILES := $(words $(SRCS))
 CURRENT_FILE = 0
 
+# ── Targets ───────────────────────────────────────────────────────────────────
+
 all: $(NAME) ascii
 
-$(NAME): $(OBJ) $(LIBFT)
+$(NAME): $(LIBFT) $(MLX_LIB) $(OBJ)
 	@echo "$(BOLD)$(BLUE)🔗 Linking executable...$(END)"
-	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX_FLAG) -o $(NAME)
+	@echo "$(BOLD)$(GREEN)✔ $(NAME) built successfully$(END)"
+
+# ── Libraries ─────────────────────────────────────────────────────────────────
+
+$(LIBFT):
+	@echo "$(BOLD)$(YELLOW)→ Building libft...$(END)"
+	@$(MAKE) -C libft --silent
+
+# Auto-compile mlx only if libmlx.a doesn't exist yet
+$(MLX_LIB):
+	@echo "$(BOLD)$(YELLOW)→ Building mlx ($(MLX_DIR))...$(END)"
+	@$(MAKE) -C $(MLX_DIR) --silent
+	@echo "$(GREEN)✔ mlx compiled$(END)"
+
+# ── Compilation ───────────────────────────────────────────────────────────────
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	@$(eval CURRENT_FILE=$(shell echo $$(($(CURRENT_FILE)+1))))
 	@printf "$(BOLD)$(PURPLE)⚡ [%2d/%2d] Compiling %-30s$(END)" \
-	$(CURRENT_FILE) $(TOTAL_FILES) "$<"
-	@$(CC) $(CFLAGS) -c $< -o $@
+		$(CURRENT_FILE) $(TOTAL_FILES) "$<"
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 	@echo " $(GREEN)✓$(END)"
+
+# ── Clean ─────────────────────────────────────────────────────────────────────
 
 clean:
 	@echo "$(BOLD)$(YELLOW)🧹 Cleaning objects...$(END)"
 	@$(RM) -r $(OBJ_DIR)
+	@$(MAKE) -C libft clean --silent
+	@$(MAKE) -C $(MLX_DIR) clean --silent
 
 fclean: clean
-	@echo "$(BOLD)$(YELLOW)🗑 Removing executable...$(END)"
+	@echo "$(BOLD)$(YELLOW)🗑  Removing executable...$(END)"
 	@$(RM) $(NAME)
+	@$(MAKE) -C libft fclean --silent
 
 re: fclean all
 
+# ── ASCII art ─────────────────────────────────────────────────────────────────
+
 ascii:
 	@echo "$(BOLD)$(PURPLE)"
-	@if [ -f ascii_art.txt ]; then \
-		cat ascii_art.txt; \
-	fi
+	@if [ -f ascii_art.txt ]; then cat ascii_art.txt; fi
 	@echo "$(END)"
 	@echo "$(BOLD)$(GREEN)✨ so_long is ready ✨$(END)"
-	@echo "$(YELLOW)➜  use ./$(NAME) + the_map_you_want.ber to start the game$(END)"
+	@echo "$(YELLOW)➜  use ./$(NAME) <map.ber>$(END)"
 
 .PHONY: all clean fclean re ascii

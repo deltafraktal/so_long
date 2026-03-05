@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   put_int.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/04 04:21:29 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/05 02:00:04 by dgeara           ###   ########.fr       */
+/*   Created: 2025/10/21 08:34:22 by dgeara            #+#    #+#             */
+/*   Updated: 2026/03/05 01:32:52 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "libft.h"
 
-int	close_win(void *param)
+int	put_int(int n)
 {
-	(void)param;
-	exit(0);
-	return (0);
-}
+	int	count;
 
-int	main(void)
-{
-	void	*mlx;
-	void	*win;
-
-	mlx = mlx_init();
-	if (!mlx)
-		return (1);
-	win = mlx_new_window(mlx, 1200, 600, "MiniLibX Test");
-	if (!win)
-		return (1);
-
-	mlx_hook(win, 17, 0, close_win, NULL);
-	mlx_loop(mlx);
-	return (0);
+	count = 0;
+	if (n == -2147483648)
+		return (put_s("-2147483648"));
+	else
+	{
+		if (n < 0)
+		{
+			n = n * -1;
+			count += put_c('-');
+		}
+		if (n > 9)
+			count += put_int(n / 10);
+		count += put_c(n % 10 + 48);
+	}
+	return (count);
 }
