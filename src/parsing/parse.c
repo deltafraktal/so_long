@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/04 04:21:29 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/05 03:55:05 by dgeara           ###   ########.fr       */
+/*   Created: 2026/03/05 04:01:45 by dgeara            #+#    #+#             */
+/*   Updated: 2026/03/05 04:14:10 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-int	close_win(void *param)
+int parse()
 {
-	(void)param;
-	exit(0);
-	return (0);
+    /* verif_map_extension */
+    /* verif */
+
+    /* floadfill from start */
 }
 
-int	main(int ac, char **av)
-{
-	t_game	game;
-
-	if (ac != 2)
-		ft_exit_error("Error\nUse ./so_long <map.ber>");
-	/* parse */
-
-	/*  */
-	return (0);
-}
+int verif_map_extension(char *s)
+(
+    int len;
+    
+    len = ft_strlen(s);
+    if(s[len - 4] != '.' || s[len - 3] != 'b' || s[len - 2] != 'e' || s[len - 3] != 'b')
+        return (1);
+    return (0);
+)
