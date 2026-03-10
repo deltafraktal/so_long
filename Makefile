@@ -25,12 +25,13 @@ ifeq ($(UNAME), Darwin)
 	MLX_DIR  = minilibx_opengl_20191021-1
 	MLX_LIB  = $(MLX_DIR)/libmlx.a
     MLX_FLAG = -Lmlx -lmlx -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
+	-Lminilibx_opengl_20191021-1 -lmlx -framework OpenGL -framework AppKit
     INC      = -I/opt/X11/include -Imlx -Iinclude
 else
     $(info 🐧  Linux detected → X11/Xext)
 	MLX_DIR  = minilibx-linux
 	MLX_LIB  = $(MLX_DIR)/libmlx.a
-    MLX_FLAG = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
+    MLX_FLAG = -Lminilibx-linux -lmlx -L/usr/lib/X11 -lXext -lX11
     INC      = -I/usr/include -Imlx -Iinclude
 endif
 
