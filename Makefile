@@ -20,15 +20,16 @@ YELLOW      := \033[33m
 # ── OS detection ──────────────────────────────────────────────────────────────
 UNAME := $(shell uname)
 
-MLX_DIR  = mlx
-MLX_LIB  = $(MLX_DIR)/libmlx.a
-
 ifeq ($(UNAME), Darwin)
-    $(info 🍎 macOS detected → OpenGL/AppKit)
+    $(info 🍎  macOS detected → OpenGL/AppKit)
+	MLX_DIR  = minilibx_opengl_20191021-1
+	MLX_LIB  = $(MLX_DIR)/libmlx.a
     MLX_FLAG = -Lmlx -lmlx -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
     INC      = -I/opt/X11/include -Imlx -Iinclude
 else
-    $(info 🐧 Linux detected → X11/Xext)
+    $(info 🐧  Linux detected → X11/Xext)
+	MLX_DIR  = minilibx-linux
+	MLX_LIB  = $(MLX_DIR)/libmlx.a
     MLX_FLAG = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
     INC      = -I/usr/include -Imlx -Iinclude
 endif
@@ -39,7 +40,10 @@ $(info 🔗 MLX_FLAG = $(MLX_FLAG))
 LIBFT       = libft/libft.a
 
 SRCS        = \
-    $(SRC_DIR)/main.c
+    $(SRC_DIR)/main.c \
+    $(SRC_DIR)/init/init_game.c \
+    $(SRC_DIR)/parsing/parse.c \
+    $(SRC_DIR)/utils/utils.c
 
 OBJ         = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
@@ -92,6 +96,15 @@ fclean: clean
 
 re: fclean all
 
+mlx: MLX_DIR = mlx
+mlx: MLX_LIB = mlx/libmlx.a
+mlx: MLX_FLAG = -L mlx -lmlx -framework OpenGL -framework AppKit
+mlx: $(NAME)
+	@echo "$(GREEN)✔ built with ./mlx$(END)"mlx: MLX_DIR = mlx
+mlx: MLX_LIB = mlx/libmlx.a
+mlx: MLX_FLAG = -L mlx -lmlx -framework OpenGL -framework AppKit
+mlx: $(NAME)
+	@echo "$(GREEN)✔ built with ./mlx$(END)"
 # ── ASCII art ─────────────────────────────────────────────────────────────────
 
 ascii:
@@ -101,4 +114,4 @@ ascii:
 	@echo "$(BOLD)$(GREEN)✨ so_long is ready ✨$(END)"
 	@echo "$(YELLOW)➜  use ./$(NAME) <map.ber>$(END)"
 
-.PHONY: all clean fclean re ascii
+.PHONY: all clean fclean re ascii mlx
