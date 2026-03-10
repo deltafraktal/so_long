@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 06:38:21 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/10 02:21:28 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/10 05:08:06 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,18 +89,21 @@ typedef struct s_game
 
 // function
 // main
-int	main(int ac, char **av);
+int		main(int ac, char **av);
 
 //utils
-int send_error(char *msg);
+int		send_error(char *msg);
+int		line_len(char *line);
+char	*strdup_no_newline(const char *s1);
+int		check_char(char *line);
 
 // parsing
-int parse(t_game *game, char *av);
-int verif_map_extension(char *s);
-int read_and_set_map_size(t_game *game, int fd);
-int set_map(t_game *game, char *av, int fd);
+int 	parse(t_game *game, char *av);
+int 	verif_map_extension(char *s);
+int 	read_map(t_game *game);
+int 	set_map(t_game *game);
 
 // init
-int init_game(t_game *game);
+int		init_game(t_game *game);
 
 #endif
