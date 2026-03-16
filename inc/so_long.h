@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 06:38:21 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/10 05:08:06 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/15 17:50:24 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,16 @@
 # define DIR_LEFT 2
 # define DIR_RIGHT 3
 
+// MLX
+// X11 Events
+# define KEY_PRESS			2
+# define DESTROY_NOTIFY		17
+
+// X11 Masks
+# define NO_MASK				0L
+# define KEY_PRESS_MASK			(1L<<0)
+
+// KEYS
 # ifdef __linux__
 #  define KEY_ESC    65307
 #  define KEY_W      119
@@ -78,10 +88,12 @@ typedef struct s_game
 	char		**map;
 	int			map_rows;
 	int			map_cols;
-	int			c_total;
+	int			p_count;
+	int			e_count;
+	int			c_count;
 	int			c_left;
-	int			player_x;
-	int			player_y;
+	int			p_x;
+	int			p_y;
 	int			moves;
 	int			dir;
 	t_textures  *textures;

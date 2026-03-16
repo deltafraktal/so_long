@@ -25,7 +25,6 @@ ifeq ($(UNAME), Darwin)
 	MLX_DIR  = minilibx_opengl_20191021-1
 	MLX_LIB  = $(MLX_DIR)/libmlx.a
     MLX_FLAG = -Lmlx -lmlx -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
-	-Lminilibx_opengl_20191021-1 -lmlx -framework OpenGL -framework AppKit
     INC      = -I/opt/X11/include -Imlx -Iinclude
 else
     $(info 🐧  Linux detected → X11/Xext)
@@ -42,9 +41,9 @@ LIBFT       = libft/libft.a
 
 SRCS        = \
     $(SRC_DIR)/main.c \
-    $(SRC_DIR)/init/init_game.c \
-    $(SRC_DIR)/parsing/parse.c \
-    $(SRC_DIR)/utils/utils.c
+    $(SRC_DIR)/init_game.c \
+    $(SRC_DIR)/parse_and_set.c \
+    $(SRC_DIR)/utils.c
 
 OBJ         = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 

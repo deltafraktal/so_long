@@ -6,13 +6,13 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:16:11 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/10 05:06:42 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/16 16:05:29 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-int send_error(char *msg)
+int	send_error(char *msg)
 {
 	ft_printf(BOLD PURPLE "Error\n"END YELLOW "%s\n" END, msg);
 	return (1);
@@ -32,6 +32,7 @@ char	*strdup_no_newline(const char *s1)
 {
 	char	*dup;
 	int		i;
+
 	dup = malloc(ft_strlen(s1) + 1);
 	if (!dup)
 		return (NULL);
@@ -45,17 +46,11 @@ char	*strdup_no_newline(const char *s1)
 	return (dup);
 }
 
-int	check_char(char *line)
+void	free_tab(char **tab, int i)
 {
-	int		i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (line[i] != '1' && line[i] != '0' && line[i] != 'P' 
-			&& line[i] != 'E' && line[i] != 'C' && line[i] != '\n')
-			return (1);
-		i++;
-	}
-	return (1);
+	if (!tab)
+		return ;
+	while (i >= 0)
+		free (tab[i--]);
+	free (tab);
 }

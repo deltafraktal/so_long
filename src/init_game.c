@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 22:12:07 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/10 02:21:55 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/16 16:02:47 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	init_game(t_game *game)
 	game->map_cols = 0;
 	game->c_total = 0;
 	game->c_left = 0;
-	game->player_x = 0;
-	game->player_y = 0;
+	game->p_x = 0;
+	game->p_y = 0;
 	game->moves = 0;
 	game->dir = DIR_DOWN;
 	game->textures = NULL;
