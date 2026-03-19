@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/18 18:21:18 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/19 02:07:00 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/19 06:16:59 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	render_elements(t_game *game)
 		{
 			if (game->map[y][x] == 'C')
 				put_img(game, game->tex.c, y, x);
+			else if (game->map[y][x] == 'E' && game->c_count > 0)
+				put_img(game, game->tex.f, y, x);
 			else if (game->map[y][x] == 'E')
 				put_img(game, game->tex.e, y, x);
 			else if (game->map[y][x] == 'P')
@@ -68,8 +70,8 @@ void render_moves(t_game *game)
     char    *str;
 
     str = ft_itoa(game->moves);
-	mlx_string_put(game->mlx, game->win, 10, 20, 0xFFFFFF, "moves:");
-    mlx_string_put(game->mlx, game->win, 60, 20, 0xFFFFFF, str);
+	mlx_string_put(game->mlx, game->win, 10, 20, 0xFF0000, "moves:");
+    mlx_string_put(game->mlx, game->win, 60, 20, 0xFF0000, str);
     free(str);
 }
 
