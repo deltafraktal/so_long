@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 06:38:21 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/19 04:40:04 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/19 16:14:29 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,13 @@ typedef struct s_tex
 {
 	int		width;
 	int		height;
-	void	*p;
+	void	*p[2];
 	void	*pe;
 	void	*f;
 	void	*w;
-	void	*c;
-	void	*e;
+	void	*c[2];
+	void	*e[3];
+	void	*d[10];
 }			t_tex;
 
 typedef struct s_game
@@ -93,6 +94,7 @@ typedef struct s_game
 	int			p_y;
 	int			moves;
 	int			won;
+	int			frame_count;
 	t_tex		tex;
 }	t_game;
 
@@ -105,6 +107,7 @@ int		send_error(char *msg);
 void	free_tab(char **tab, int i);
 int		free_map(t_game *game, int rows);
 void	free_textures(t_game *game);
+void	short_destroy_image(t_game * game, void *img);
 
 //utils
 int		line_len(char *line);
@@ -131,13 +134,21 @@ int		validate_map(t_game *game);
 int		free_map(t_game *game, int rows);
 
 // init
+int		init_tex_digit(t_game *game);
 int		init_textures(t_game *game);
 int		init_game(t_game *game);
 
 // render
+void	render_walls(t_game *game);
 void	render_background(t_game *game);
 void	render_elements(t_game *game);
 void	put_img(t_game *g, void *img, int y, int x);
+void	render_moves_count(t_game *game);
 void	render(t_game *game);
+
+// aniation
+int 	animation(t_game *game);
+void	render_animation(t_game *game);
+
 
 #endif

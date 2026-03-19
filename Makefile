@@ -47,6 +47,7 @@ SRCS        = \
     $(SRC_DIR)/parse_and_set.c \
 	$(SRC_DIR)/check_map_and_path.c \
 	$(SRC_DIR)/render.c \
+	$(SRC_DIR)/animations.c \
     $(SRC_DIR)/utils.c
 
 OBJ         = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

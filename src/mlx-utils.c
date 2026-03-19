@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:16:11 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/19 04:48:45 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/19 14:24:46 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	move_p(t_game *game, int y, int x)
 	else if (game->map[y][x] == 'C')
 		game->c_count--;
 	else if (game->map[y][x] == 'E' && game->c_count == 0)
-		return (ft_printf("YOUPIIIII"), close_window(game), 0);
+		return (ft_printf("YEEPEEEEE YOU WON !\n"), close_window(game), 0);
 	if (game->map[game->p_y][game->p_x] == 'Z')
 		game->map[game->p_y][game->p_x] = 'E';
 	else
