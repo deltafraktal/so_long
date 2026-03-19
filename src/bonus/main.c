@@ -6,11 +6,11 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 04:21:29 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/19 20:12:21 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/19 22:47:22 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../inc/so_long_bonus.h"
 
 int	main(int ac, char **av)
 {
@@ -29,10 +29,11 @@ int	main(int ac, char **av)
 	game.win = mlx_new_window(game.mlx, TILE_SIZE * game.map_cols, TILE_SIZE * game.map_rows, "so_loooong");
 	if (!game.win)
     	return (send_error("➜ mlx new window failed"), 1);
-	render_background(&game);
+	render_walls(&game);
 	render(&game);
 	mlx_hook(game.win, KEY_PRESS, KEY_PRESS_MASK, handle_keys, &game);
     mlx_hook(game.win, DESTROY_NOTIFY, NO_MASK, close_window, &game);
+	mlx_loop_hook(game.mlx, animation, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }

@@ -6,11 +6,11 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 22:12:07 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/19 19:58:45 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/19 23:25:26 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../inc/so_long_bonus.h"
 
 // verifie que la map est bien fermée
 int	check_walls(t_game *game)
@@ -36,6 +36,23 @@ int	check_walls(t_game *game)
 
 // verifie qu'il y a le bon nombre d'element dans la map 
 //et set la position du player
+
+void	count_char(t_game *game, char c, int y, int x)
+{
+	if (c == 'P')
+	{
+		game->p_x = x;
+		game->p_y = y;
+		game->p_count++;
+	}
+	else if (c == 'X')
+		game->x_count++;
+	else if (c == 'E')
+		game->e_count++;
+	else if (c == 'C')
+		game->c_count++;
+	
+}
 int	count_elements(t_game *game)
 {
 	int	y;
@@ -47,16 +64,7 @@ int	count_elements(t_game *game)
 		x = 0;
 		while (game->map[y][x])
 		{
-			if (game->map[y][x] == 'P')
-			{
-				game->p_x = x;
-				game->p_y = y;
-				game->p_count++;
-			}
-			else if (game->map[y][x] == 'E')
-				game->e_count++;
-			else if (game->map[y][x] == 'C')
-				game->c_count++;
+			count_char(game, game->map[y][x], y, x);
 			x++;
 		}
 		y++;

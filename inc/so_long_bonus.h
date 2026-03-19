@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 06:38:21 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/19 20:24:39 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/19 23:24:25 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,17 +75,25 @@
 #  define KEY_RIGHT  65363 */
 # endif
 
+typedef struct s_enemy
+{
+    int     x;
+    int     y;
+    int     dir;
+}           t_enemy;
+
 typedef struct s_tex
 {
 	int		width;
 	int		height;
-	void	*p;
+	void	*p[2];
 	void	*pe;
 	void	*f;
 	void	*w;
-	void	*c;
-	void	*e;
-	void	*d;
+	void	*c[2];
+	void	*e[3];
+    void	*x[5];
+	void	*d[10];
 }			t_tex;
 
 typedef struct s_game
@@ -96,6 +104,7 @@ typedef struct s_game
 	int			map_rows;
 	int			map_cols;
 	int			p_count;
+    int         x_count;
 	int			e_count;
 	int			c_count;
 	int			c_left;
@@ -103,7 +112,9 @@ typedef struct s_game
 	int			p_y;
 	int			moves;
 	int			won;
+	int			frame_count;
 	t_tex		tex;
+    t_enemy     *x;
 } 	t_game;
 
 // function
@@ -113,6 +124,7 @@ int	main(int ac, char **av);
 //free and errors
 int		send_error(char *msg);
 void	free_tab(char **tab, int i);
+void destroy_enemies_img(t_game *game);
 void	free_textures(t_game *game);
 void	short_destroy_image(t_game * game, void *img);
 
@@ -122,32 +134,51 @@ char	*strdup_no_newline(const char *s1);
 
 //mlx utils
 int		close_window(t_game *game, int kill);
+int		close_game(t_game *game);
 int		move_p(t_game *game, int x, int y);
 int		handle_keys(int keycode, t_game *game);
 
-// parse and set
+// parsing
+int		parse(t_game *game, char *av);
 int		verif_map_extension(char *s);
 int		check_char(char *line);
 int		read_map(t_game *game, char *av);
 int		set_map(t_game *game, char *av);
-int		parse(t_game *game, char *av);
 
-// check map and path
+// map validation
 int		check_walls(t_game *game);
+void	count_char(t_game *game, char c, int y, int x);
 int		count_elements(t_game *game);
 int		copy_map(t_game *game, char ***cpy);
 void	flood_fill(char **cpy, int y, int x);
 int		validate_map(t_game *game);
 
 // init
+int		init_tex_digit(t_game *game);
+int init_tex_x(t_game *game);
 int		init_textures(t_game *game);
 int		init_game(t_game *game);
 
 // render
 void	render_walls(t_game *game);
 void	render_background(t_game *game);
+void *get_tile_img(t_game *game, char c);
 void	render_elements(t_game *game);
 void	put_img(t_game *g, void *img, int y, int x);
+void	render_moves_count(t_game *game);
 void	render(t_game *game);
+
+// aniation
+int		animation(t_game *game);
+void	render_animation(t_game *game);
+
+// enemies
+void set_x(t_game *game);
+void	move_x(t_game *game);
+
+// pop-ups
+int	pop_up(t_game *game, int end);
+int	handle_esc(int keycode, t_game *game);
+
 
 #endif

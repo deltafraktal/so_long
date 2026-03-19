@@ -6,11 +6,11 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 04:01:45 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/19 20:24:24 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/19 23:46:25 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../inc/so_long_bonus.h"
 
 // verifie l'extension de la map :P
 int	verif_map_extension(char *s)
@@ -34,7 +34,8 @@ int	check_char(char *line)
 	while (line[i])
 	{
 		if (line[i] != '1' && line[i] != '0' && line[i] != 'P'
-			&& line[i] != 'E' && line[i] != 'C' && line[i] != '\n')
+			&& line[i] != 'E' && line[i] != 'C'
+			&& line[i] != 'X' && line[i] != '\n')
 			return (1);
 		i++;
 	}
@@ -108,5 +109,6 @@ int	parse(t_game *game, char *av)
 		return (1);
 	if (!validate_map(game))
 		return (free_tab(game->map, game->map_rows - 1), 1);
+	set_x(game);
 	return (0);
 }

@@ -3,11 +3,14 @@
 # ══════════════════════════════════════════════════════════════════════════════
 
 NAME        = so_long
+NAME_B        = so_long_bonus
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror
 RM          = rm -f
 SRC_DIR     = src
+SRC_B_DIR   = src/bonus
 OBJ_DIR     = obj
+OBJ_B_DIR     = obj/bonus
 
 # ── Colors ────────────────────────────────────────────────────────────────────
 END         := \033[0m
@@ -47,11 +50,23 @@ SRCS        = \
     $(SRC_DIR)/parse_and_set.c \
 	$(SRC_DIR)/check_map_and_path.c \
 	$(SRC_DIR)/render.c \
-	$(SRC_DIR)/animations.c \
-	$(SRC_DIR)/pop_up.c \
     $(SRC_DIR)/utils.c
 
+SRCS_B		= \
+	$(SRC_B_DIR)/main.c \
+    $(SRC_B_DIR)/init_game.c \
+	$(SRC_B_DIR)/mlx-utils.c \
+	$(SRC_B_DIR)/error_and_free.c \
+    $(SRC_B_DIR)/parse_and_set.c \
+	$(SRC_B_DIR)/check_map_and_path.c \
+	$(SRC_B_DIR)/render.c \
+	$(SRC_B_DIR)/animations.c \
+	$(SRC_B_DIR)/pop_up.c \
+	$(SRC_B_DIR)/enemies.c \
+    $(SRC_B_DIR)/utils.c
+
 OBJ         = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+OBJ_B       = $(SRCS_B:$(SRC_B_DIR)/%.c=$(OBJ_B_DIR)/%.o)
 
 TOTAL_FILES := $(words $(SRCS))
 CURRENT_FILE = 0
@@ -64,6 +79,12 @@ $(NAME): $(LIBFT) $(MLX_LIB) $(OBJ)
 	@echo "$(BOLD)$(BLUE)🔗 Linking executable...$(END)"
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX_FLAG) -o $(NAME)
 	@echo "$(BOLD)$(GREEN)✔ $(NAME) built successfully$(END)"
+
+# ── Targets bonus ───────────────────────────────────────────────────────────────────
+bonus: $(LIBFT) $(MLX_LIB) $(OBJ_B)
+	@echo "$(BOLD)$(BLUE)🔗 Linking executable BONUS...$(END)"
+	@$(CC) $(CFLAGS) $(OBJ_B) $(LIBFT) $(MLX_FLAG) -o $(NAME_B)
+	@echo "$(BOLD)$(GREEN)✔ $(NAME_B) built BONUS successfully$(END)"
 
 # ── Libraries ─────────────────────────────────────────────────────────────────
 
@@ -92,13 +113,15 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 clean:
 	@echo "$(BOLD)$(YELLOW)🧹 Cleaning objects...$(END)"
 	@$(RM) -r $(OBJ_DIR)
-	@$(MAKE) -C libft clean --silent
-	@$(MAKE) -C $(MLX_DIR) clean --silent
+	@$(RM) -r $(OBJ_B_DIR)
+#@$(MAKE) -C libft clean --silent
+#@$(MAKE) -C $(MLX_DIR) clean --silent
 
 fclean: clean
 	@echo "$(BOLD)$(YELLOW)🗑  Removing executable...$(END)"
 	@$(RM) $(NAME)
-	@$(MAKE) -C libft fclean --silent
+	@$(RM) $(NAME_B)
+# @$(MAKE) -C libft fclean --silent
 
 re: fclean all
 
@@ -120,4 +143,4 @@ ascii:
 	@echo "$(BOLD)$(GREEN)✨ so_long is ready ✨$(END)"
 	@echo "$(YELLOW)➜  use ./$(NAME) <map.ber>$(END)"
 
-.PHONY: all clean fclean re ascii mlx
+.PHONY: all clean fclean re ascii mlx bonus
