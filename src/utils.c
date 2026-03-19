@@ -6,17 +6,11 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:16:11 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/16 16:05:29 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/16 16:58:31 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
-
-int	send_error(char *msg)
-{
-	ft_printf(BOLD PURPLE "Error\n"END YELLOW "%s\n" END, msg);
-	return (1);
-}
 
 int	line_len(char *line)
 {
@@ -44,13 +38,4 @@ char	*strdup_no_newline(const char *s1)
 	}
 	dup[i] = '\0';
 	return (dup);
-}
-
-void	free_tab(char **tab, int i)
-{
-	if (!tab)
-		return ;
-	while (i >= 0)
-		free (tab[i--]);
-	free (tab);
 }

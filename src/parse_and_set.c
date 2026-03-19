@@ -6,12 +6,13 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 04:01:45 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/16 16:11:30 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/19 01:46:40 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
+// verifie l'extension de la map :P
 int	verif_map_extension(char *s)
 {
 	int	len;
@@ -24,6 +25,7 @@ int	verif_map_extension(char *s)
 	return (0);
 }
 
+// verifie qu'il n'y a pas de char indesirable
 int	check_char(char *line)
 {
 	int		i;
@@ -36,75 +38,76 @@ int	check_char(char *line)
 			return (1);
 		i++;
 	}
-	return (1);
+	return (0);
 }
 
 //li, check les char, et que c'est bien un rectangle
-int	read_map(t_game *game)
+int	read_map(t_game *game, char *av)
 {
 	int		fd;
 	char	*line;
 
-	fd = open(game->path, O_RDONLY);
+	fd = open(av, O_RDONLY);
 	if (fd == -1)
 		return (send_error("➜ fill won't open"), 1);
 	line = get_next_line(fd);
+	if (!line)
+        return (send_error("➜ empty map file"), close(fd), 0);
 	game->map_cols = line_len(line);
 	while (line)
 	{
-		if (check_char(line))
-			return (1);
-		if (line_len(line) != game->map_cols)
-			return (1);
+		if (check_char(line) || line_len(line) != game->map_cols)
+			return (free(line), close(fd), 0);
 		game->map_rows++;
 		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
-	return (0);
+	return (1);
 }
 
-//set la map en tableau
-int	set_map(t_game *game)
+// set la map en tableau
+int	set_map(t_game *game, char *av)
 {
 	int		fd;
 	char	*line;
 	int		i;
 
-	fd = open(game->path, O_RDONLY);
+	fd = open(av, O_RDONLY);
 	if (fd == -1)
-		return (send_error("➜ fill won't open"), 1);
+		return (send_error("➜ fill won't open"), 0);
 	game->map = malloc(sizeof(char *) * (game->map_rows + 1));
 	if (!game->map)
-		return (close(fd), send_error("➜ Malloc map failed"), 1);
+		return (close(fd), send_error("➜ Malloc map failed"), 0);
 	game->map[game->map_rows] = NULL;
 	i = 0;
 	line = get_next_line(fd);
-	while (line)
+	while (i < game->map_rows)
 	{
-		game->map[i++] = strdup_no_newline(line);
+		game->map[i] = strdup_no_newline(line);
+		 if (!game->map[i])
+            return (send_error("➜ strdup failed"),free(line), close(fd), 0);
 		free(line);
+		i++;
 		line = get_next_line(fd);
 	}
 	close(fd);
-	return (0);
+	return (1);
 }
 
+// vérifier la validité de la carte (murs, joueur, collectibles, sortie),
+// et initialiser les positions du joueur, etc.
+// Retourner 0 en cas de succès
 int	parse(t_game *game, char *av)
 {
 	if (!verif_map_extension(av))
 		return (send_error("➜ invalid file"), 1);
-	if (read_map(game))
+	if (!read_map(game, av))
 		return (send_error("➜ invalid map"), 1);
-	if (set_map(game))
-		return (1);
-	if (!validate_map(game) || !check_path(game))
-		return (free_map(game, game->map_rows - 1), 1);
-	// vérifier la validité de la carte (murs, joueur, collectibles, sortie),
-	// et initialiser les positions du joueur, etc.
-	
-	// Fermer le fichier
-	
-	// Retourner 0 en cas de succès
+	if (!set_map(game, av))
+		return (send_error("➜ failed to set map"), 1);
+	if (!validate_map(game))
+		return (send_error("➜ invalid map 2"),
+			free_map(game, game->map_rows - 1), 1);
 	return (0);
 }

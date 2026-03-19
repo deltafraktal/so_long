@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 06:38:21 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/15 17:50:24 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/18 19:46:56 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,6 @@
 
 // KEYS
 # ifdef __linux__
-#  define KEY_ESC    65307
-#  define KEY_W      119
-#  define KEY_A      97
-#  define KEY_S      115
-#  define KEY_D      100
-#  define KEY_UP     65362
-#  define KEY_DOWN   65364
-#  define KEY_LEFT   65361
-#  define KEY_RIGHT  65363
-# else
 #  define KEY_ESC    53
 #  define KEY_W      13
 #  define KEY_A      0
@@ -64,27 +54,34 @@
 #  define KEY_DOWN   125
 #  define KEY_LEFT   123
 #  define KEY_RIGHT  124
+# else
+#  define KEY_ESC    65307
+#  define KEY_W      119
+#  define KEY_A      97
+#  define KEY_S      115
+#  define KEY_D      100
+#  define KEY_UP     65362
+#  define KEY_DOWN   65364
+#  define KEY_LEFT   65361
+#  define KEY_RIGHT  65363
 # endif
 
-typedef struct s_textures
+typedef struct s_tex
 {
 	int		width;
 	int		height;
-	void	*player_l;
-	void	*player_r;
-	void	*player_d;
-	void	*player_u;
-	void	*floor;
-	void	*wall;
-	void	*collectible;
-	void	*exit;
-}			t_textures;
+	void	*p;
+	void	*pe;
+	void	*f;
+	void	*w;
+	void	*c;
+	void	*e;
+}			t_tex;
 
 typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
-	char		*path;
 	char		**map;
 	int			map_rows;
 	int			map_cols;
@@ -96,26 +93,51 @@ typedef struct s_game
 	int			p_y;
 	int			moves;
 	int			dir;
-	t_textures  *textures;
-}   t_game;
+	t_tex		tex;
+}	t_game;
 
 // function
 // main
 int		main(int ac, char **av);
 
-//utils
+//free and errors
 int		send_error(char *msg);
+void	free_tab(char **tab, int i);
+int		free_map(t_game *game, int rows);
+void	free_textures(t_game *game);
+
+//utils
 int		line_len(char *line);
 char	*strdup_no_newline(const char *s1);
-int		check_char(char *line);
+
+//mlx utils
+int		close_window(t_game *game);
+int		move_p(t_game *game, int x, int y);
+int		handle_keys(int keycode, t_game *game);
 
 // parsing
-int 	parse(t_game *game, char *av);
-int 	verif_map_extension(char *s);
-int 	read_map(t_game *game);
-int 	set_map(t_game *game);
+int		parse(t_game *game, char *av);
+int		verif_map_extension(char *s);
+int		check_char(char *line);
+int		read_map(t_game *game, char *av);
+int		set_map(t_game *game, char *av);
+
+// map validation
+int		check_walls(t_game *game);
+int		count_elements(t_game *game);
+int		copy_map(t_game *game, char ***cpy);
+void	flood_fill(char **cpy, int y, int x);
+int		validate_map(t_game *game);
+int		free_map(t_game *game, int rows);
 
 // init
+int		init_textures(t_game *game);
 int		init_game(t_game *game);
+
+// render
+void	render_background(t_game *game);
+void	render_elements(t_game *game);
+void	put_img(t_game *g, void *img, int y, int x);
+void	render(t_game *game);
 
 #endif

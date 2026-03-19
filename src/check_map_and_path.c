@@ -6,12 +6,13 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 22:12:07 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/16 16:07:37 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/18 13:49:45 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
+// verifie que la map est bien fermée
 int	check_walls(t_game *game)
 {
 	int	i;
@@ -33,6 +34,8 @@ int	check_walls(t_game *game)
 	return (1);
 }
 
+// verifie qu'il y a le bon nombre d'element dans la map 
+//et set la position du player
 int	count_elements(t_game *game)
 {
 	int	y;
@@ -61,25 +64,28 @@ int	count_elements(t_game *game)
 	return (game->p_count == 1 && game->e_count == 1 && game->c_count >= 1);
 }
 
+// fais une copy de la map pour floodfill ensuite
 int	copy_map(t_game *game, char ***cpy)
 {
 	int	i;
 
 	i = 0;
-	cpy = malloc(sizeof(char *) * (game->map_rows + 1));
-	if (!cpy)
+	*cpy = malloc(sizeof(char *) * (game->map_rows + 1));
+	if (!*cpy)
 		return (0);
 	while (i < game->map_rows)
 	{
-		cpy[i] = strdup(game->map[i]);
-		if (!cpy[i])
-			return (free_tab(cpy, i), 0);
+		ft_printf("huuuuun ?\n");
+		(*cpy)[i] = strdup(game->map[i]);
+		if (!(*cpy)[i])
+			return (free_tab(*cpy, i), 0);
 		i++;
 	}
-	cpy[i] = NULL;
+	(*cpy)[i] = NULL;
 	return (1);
 }
 
+// remplit toute les cases atteignable par 'o'
 void	flood_fill(char **cpy, int y, int x)
 {
 	if (cpy[y][x] == 'o' || cpy[y][x] == '1')
@@ -91,6 +97,8 @@ void	flood_fill(char **cpy, int y, int x)
 	flood_fill(cpy, y, x - 1);
 }
 
+// envoie les différent check puis 
+// vérifie si des élements n'ont pas été touché par floodfill et sont donc inatteignables
 int	validate_map(t_game *game)
 {
 	char	**cpy;

@@ -42,7 +42,11 @@ LIBFT       = libft/libft.a
 SRCS        = \
     $(SRC_DIR)/main.c \
     $(SRC_DIR)/init_game.c \
+	$(SRC_DIR)/mlx-utils.c \
+	$(SRC_DIR)/error_and_free.c \
     $(SRC_DIR)/parse_and_set.c \
+	$(SRC_DIR)/check_map_and_path.c \
+	$(SRC_DIR)/render.c \
     $(SRC_DIR)/utils.c
 
 OBJ         = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
