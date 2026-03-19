@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 06:35:10 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/19 16:14:08 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/19 18:50:31 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int animation(t_game *game)
 {
     game->frame_count++;
-    render_animation(game);
+    render(game);
     return (0);
 }
 

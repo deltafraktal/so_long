@@ -24,8 +24,8 @@ ifeq ($(UNAME), Darwin)
     $(info 🍎  macOS detected → OpenGL/AppKit)
 	MLX_DIR  = minilibx_opengl_20191021-1
 	MLX_LIB  = $(MLX_DIR)/libmlx.a
-    MLX_FLAG = -Lmlx -lmlx -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
-    INC      = -I/opt/X11/include -Imlx -Iinclude
+    MLX_FLAG = -Lminilibx_opengl_20191021-1 -lmlx -framework OpenGL -framework AppKit
+    INC      = -Imlx -Iinclude
 else
     $(info 🐧  Linux detected → X11/Xext)
 	MLX_DIR  = minilibx-linux
@@ -48,6 +48,7 @@ SRCS        = \
 	$(SRC_DIR)/check_map_and_path.c \
 	$(SRC_DIR)/render.c \
 	$(SRC_DIR)/animations.c \
+	$(SRC_DIR)/pop_up.c \
     $(SRC_DIR)/utils.c
 
 OBJ         = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

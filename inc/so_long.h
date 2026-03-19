@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 06:38:21 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/19 16:14:29 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/19 19:45:30 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,16 @@
 #  define KEY_LEFT   123
 #  define KEY_RIGHT  124
 # else
-#  define KEY_ESC    65307
+#  define KEY_ESC    53
+#  define KEY_W      13
+#  define KEY_A      0
+#  define KEY_S      1
+#  define KEY_D      2
+#  define KEY_UP     126
+#  define KEY_DOWN   125
+#  define KEY_LEFT   123
+#  define KEY_RIGHT  124
+/* #  define KEY_ESC    65307
 #  define KEY_W      119
 #  define KEY_A      97
 #  define KEY_S      115
@@ -63,7 +72,7 @@
 #  define KEY_UP     65362
 #  define KEY_DOWN   65364
 #  define KEY_LEFT   65361
-#  define KEY_RIGHT  65363
+#  define KEY_RIGHT  65363 */
 # endif
 
 typedef struct s_tex
@@ -96,11 +105,11 @@ typedef struct s_game
 	int			won;
 	int			frame_count;
 	t_tex		tex;
-}	t_game;
+} 	t_game;
 
 // function
 // main
-int		main(int ac, char **av);
+int	main(int ac, char **av);
 
 //free and errors
 int		send_error(char *msg);
@@ -114,7 +123,8 @@ int		line_len(char *line);
 char	*strdup_no_newline(const char *s1);
 
 //mlx utils
-int		close_window(t_game *game);
+int		close_window(t_game *game, int kill);
+int		close_game(t_game *game);
 int		move_p(t_game *game, int x, int y);
 int		handle_keys(int keycode, t_game *game);
 
@@ -149,6 +159,10 @@ void	render(t_game *game);
 // aniation
 int 	animation(t_game *game);
 void	render_animation(t_game *game);
+
+// pop-ups
+int	pop_up(t_game *game, int end);
+int	handle_esc(int keycode, t_game *game);
 
 
 #endif
