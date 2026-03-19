@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 22:12:07 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/18 13:49:45 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/19 02:06:14 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int	copy_map(t_game *game, char ***cpy)
 		return (0);
 	while (i < game->map_rows)
 	{
-		ft_printf("huuuuun ?\n");
 		(*cpy)[i] = strdup(game->map[i]);
 		if (!(*cpy)[i])
 			return (free_tab(*cpy, i), 0);

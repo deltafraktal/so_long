@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 22:12:07 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/19 01:47:38 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/19 04:40:07 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ int	init_game(t_game *game)
 	game->p_x = 0;
 	game->p_y = 0;
 	game->moves = 0;
-	game->dir = DIR_DOWN;
+	game->won = 0;
 	return (0);
 }

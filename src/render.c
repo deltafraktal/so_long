@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/18 18:21:18 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/19 01:56:39 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/19 02:07:00 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ void render_moves(t_game *game)
     char    *str;
 
     str = ft_itoa(game->moves);
-	mlx_string_put(game->mlx, game->win, 10, 10, 0xFFFFFF, "moves:");
-    mlx_string_put(game->mlx, game->win, 60, 10, 0xFFFFFF, str);
+	mlx_string_put(game->mlx, game->win, 10, 20, 0xFFFFFF, "moves:");
+    mlx_string_put(game->mlx, game->win, 60, 20, 0xFFFFFF, str);
     free(str);
 }
 

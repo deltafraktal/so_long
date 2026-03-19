@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 06:38:21 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/18 19:46:56 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/19 04:40:04 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ typedef struct s_game
 	int			p_x;
 	int			p_y;
 	int			moves;
-	int			dir;
+	int			won;
 	t_tex		tex;
 }	t_game;
 
