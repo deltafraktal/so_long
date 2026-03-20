@@ -6,17 +6,17 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 22:12:07 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/19 23:38:57 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/20 03:14:11 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long_bonus.h"
 
-int init_tex_digit(t_game *game)
+int	init_tex_digit(t_game *game)
 {
-	int     w;
-    int     h;
-	
+	int	w;
+	int	h;
+
 	game->tex.d[0] = mlx_xpm_file_to_image(game->mlx, "tex/d0.xpm", &w, &h);
 	game->tex.d[1] = mlx_xpm_file_to_image(game->mlx, "tex/d1.xpm", &w, &h);
 	game->tex.d[2] = mlx_xpm_file_to_image(game->mlx, "tex/d2.xpm", &w, &h);
@@ -31,48 +31,53 @@ int init_tex_digit(t_game *game)
 		|| !game->tex.d[3] || !game->tex.d[4] || !game->tex.d[5]
 		|| !game->tex.d[6] || !game->tex.d[7] || !game->tex.d[8]
 		|| !game->tex.d[9])
-		return(1);
-	return(0);
+		return (1);
+	return (0);
 }
 
-int init_tex_x(t_game *game)
+int	init_tex_x(t_game *game)
 {
-	int     w;
-    int     h;
-	
+	int	w;
+	int	h;
+
 	game->tex.x[0] = mlx_xpm_file_to_image(game->mlx, "tex/x0.xpm", &w, &h);
 	game->tex.x[1] = mlx_xpm_file_to_image(game->mlx, "tex/x1.xpm", &w, &h);
 	game->tex.x[2] = mlx_xpm_file_to_image(game->mlx, "tex/x2.xpm", &w, &h);
-	game->tex.x[3] = mlx_xpm_file_to_image(game->mlx, "tex/x3.xpm", &w, &h);
-	game->tex.x[4] = mlx_xpm_file_to_image(game->mlx, "tex/x4.xpm", &w, &h);
-	if (!game->tex.x[0] || !game->tex.x[1] || !game->tex.x[2]
-		|| !game->tex.x[3] || !game->tex.x[4])
-		return(1);
-	return(0);
+	if (!game->tex.x[0] || !game->tex.x[1] || !game->tex.x[2])
+		return (1);
+	return (0);
 }
-int init_textures(t_game *game)
-{
-    int     w;
-    int     h;
 
+int	init_tex_elements(t_game *game)
+{
+	int	w;
+	int	h;
+
+	game->tex.p[0] = mlx_xpm_file_to_image(game->mlx, "tex/p1.xpm", &w, &h);
+	game->tex.p[1] = mlx_xpm_file_to_image(game->mlx, "tex/p2.xpm", &w, &h);
+	game->tex.f = mlx_xpm_file_to_image(game->mlx, "tex/f.xpm", &w, &h);
+	game->tex.w = mlx_xpm_file_to_image(game->mlx, "tex/w.xpm", &w, &h);
+	game->tex.c[0] = mlx_xpm_file_to_image(game->mlx, "tex/c1.xpm", &w, &h);
+	game->tex.c[1] = mlx_xpm_file_to_image(game->mlx, "tex/c2.xpm", &w, &h);
+	game->tex.e[0] = mlx_xpm_file_to_image(game->mlx, "tex/e0.xpm", &w, &h);
+	game->tex.e[1] = mlx_xpm_file_to_image(game->mlx, "tex/e1.xpm", &w, &h);
+	game->tex.e[2] = mlx_xpm_file_to_image(game->mlx, "tex/e2.xpm", &w, &h);
+	if (!game->tex.p[0] || !game->tex.p[1] || !game->tex.f
+		|| !game->tex.w || !game->tex.c[0] || !game->tex.c[1]
+		|| !game->tex.e[0] || !game->tex.e[1] || !game->tex.e[2])
+		return (1);
+	return (0);
+}
+
+int	init_textures(t_game *game)
+{
 	if (init_tex_digit(game))
 		return (send_error("➜ failed to load digit textures"), 1);
 	if (init_tex_x(game))
 		return (send_error("➜ failed to load enemies texture"), 1);
-    game->tex.p[0] = mlx_xpm_file_to_image(game->mlx, "tex/p1.xpm", &w, &h);
-	game->tex.p[1] = mlx_xpm_file_to_image(game->mlx, "tex/p2.xpm", &w, &h);
-    game->tex.f = mlx_xpm_file_to_image(game->mlx, "tex/f.xpm", &w, &h);
-    game->tex.w = mlx_xpm_file_to_image(game->mlx, "tex/w.xpm", &w, &h);
-    game->tex.c[0] = mlx_xpm_file_to_image(game->mlx, "tex/c1.xpm", &w, &h);
-    game->tex.c[1] = mlx_xpm_file_to_image(game->mlx, "tex/c2.xpm", &w, &h);
-    game->tex.e[0] = mlx_xpm_file_to_image(game->mlx, "tex/e1.xpm", &w, &h);
-	game->tex.e[1] = mlx_xpm_file_to_image(game->mlx, "tex/e2.xpm", &w, &h);
-	game->tex.e[2] = mlx_xpm_file_to_image(game->mlx, "tex/e3.xpm", &w, &h);
-    if (!game->tex.p[0] || !game->tex.p[1] ||!game->tex.f
-        || !game->tex.w || !game->tex.c[0] || !game->tex.c[1]
-		|| !game->tex.e[0] || !game->tex.e[1] || !game->tex.e[2])
-        return (send_error("➜ failed to load textures"), 1);
-    return (0);
+	if (init_tex_elements(game))
+		return (send_error("➜ failed to load elements texture"), 1);
+	return (0);
 }
 
 int	init_game(t_game *game)

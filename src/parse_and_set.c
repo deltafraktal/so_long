@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 04:01:45 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/19 20:24:24 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/20 03:58:37 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ int	read_map(t_game *game, char *av)
 		return (send_error("➜ fill won't open"), 1);
 	line = get_next_line(fd);
 	if (!line)
-        return (send_error("➜ empty map file"), close(fd), 0);
+		return (send_error("➜ empty map file"), close(fd), 0);
 	game->map_cols = line_len(line);
 	while (line)
 	{
 		if (check_char(line) || line_len(line) != game->map_cols)
-			return (send_error("➜ invalid map"),free(line), close(fd), 0);
+			return (send_error("➜ invalid map"), free(line), close(fd), 0);
 		game->map_rows++;
 		free(line);
 		line = get_next_line(fd);
@@ -85,8 +85,8 @@ int	set_map(t_game *game, char *av)
 	while (i < game->map_rows)
 	{
 		game->map[i] = strdup_no_newline(line);
-		 if (!game->map[i])
-            return (send_error("➜ strdup failed"),free(line), close(fd), 0);
+		if (!game->map[i])
+			return (send_error("➜ strdup failed"), free(line), close(fd), 0);
 		free(line);
 		i++;
 		line = get_next_line(fd);

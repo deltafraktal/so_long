@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/18 18:21:18 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/19 20:37:02 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/20 03:54:05 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	render_background(t_game *game)
 {
-	int y;
-	int x;
+	int	y;
+	int	x;
 
 	y = 0;
 	while (y < game->map_rows)
@@ -35,8 +35,8 @@ void	render_background(t_game *game)
 
 void	render_elements(t_game *game)
 {
-	int y;
-	int x;
+	int	y;
+	int	x;
 
 	y = 1;
 	while (y < game->map_rows - 1)
@@ -70,6 +70,6 @@ void	put_img(t_game *g, void *img, int y, int x)
 void	render(t_game *game)
 {
 	if (game->won == 2)
-        return ;
+		return ;
 	render_elements(game);
 }

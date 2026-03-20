@@ -6,26 +6,25 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 06:35:10 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/19 23:06:12 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/20 03:27:41 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long_bonus.h"
 
-int animation(t_game *game)
+int	animation(t_game *game)
 {
 	game->frame_count++;
-	if (game->frame_count % 20 == 0)
+	if (game->frame_count % 10 == 0)
 		move_x(game);
 	render(game);
 	return (0);
 }
 
-
 void	render_animation(t_game *game)
 {
-	int y;
-	int x;
+	int	y;
+	int	x;
 
 	y = 0;
 	while (y < game->map_rows)
@@ -35,7 +34,7 @@ void	render_animation(t_game *game)
 		{
 			if (game->map[y][x] == 'C')
 				put_img(game, game->tex.c[game->frame_count / 8 % 2], y, x);
-			else if (game->map[y][x] == 'E' && game->c_count == 0)
+			else if (game->map[y][x] == 'E' && game->c_left == 0)
 				put_img(game, game->tex.e[game->frame_count / 3 % 3], y, x);
 			x++;
 		}

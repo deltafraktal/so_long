@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 06:38:21 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/19 23:24:25 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/20 02:28:44 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@
 # define DIR_UP 1
 # define DIR_LEFT 2
 # define DIR_RIGHT 3
+
+# define MAX_VIEW_W  20
+# define MAX_VIEW_H  15
 
 // MLX
 // X11 Events
@@ -91,8 +94,8 @@ typedef struct s_tex
 	void	*f;
 	void	*w;
 	void	*c[2];
-	void	*e[3];
-    void	*x[5];
+	void	*e[8];
+    void	*x[3];
 	void	*d[10];
 }			t_tex;
 
@@ -115,6 +118,10 @@ typedef struct s_game
 	int			frame_count;
 	t_tex		tex;
     t_enemy     *x;
+    int     cam_x;   // offset caméra en tiles
+    int     cam_y;
+    int     view_w;  // largeur viewport en tiles  ex: 10
+    int     view_h;  // hauteur viewport en tiles  ex: 10
 } 	t_game;
 
 // function
@@ -155,7 +162,8 @@ int		validate_map(t_game *game);
 
 // init
 int		init_tex_digit(t_game *game);
-int init_tex_x(t_game *game);
+int     init_tex_x(t_game *game);
+int     init_text_elements(t_game *game);
 int		init_textures(t_game *game);
 int		init_game(t_game *game);
 
@@ -180,5 +188,6 @@ void	move_x(t_game *game);
 int	pop_up(t_game *game, int end);
 int	handle_esc(int keycode, t_game *game);
 
-
+// pop-ups
+void    update_camera(t_game *game);
 #endif

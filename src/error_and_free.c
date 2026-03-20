@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 16:58:49 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/19 20:19:26 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/20 03:53:24 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	free_tab(char **tab, int i)
 	free (tab);
 }
 
-void free_textures(t_game *game)
+void	free_textures(t_game *game)
 {
 	if (!game || !game->mlx)
-		return;
+		return ;
 	short_destroy_image(game, game->tex.p);
 	short_destroy_image(game, game->tex.f);
 	short_destroy_image(game, game->tex.w);
@@ -38,8 +38,8 @@ void free_textures(t_game *game)
 	short_destroy_image(game, game->tex.e);
 }
 
-void short_destroy_image(t_game * game, void *img)
+void	short_destroy_image(t_game *game, void *img)
 {
 	if (img)
-	mlx_destroy_image(game->mlx, img); 
+		mlx_destroy_image(game->mlx, img);
 }

@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 22:12:07 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/19 19:58:45 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/20 03:56:47 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,8 @@ void	flood_fill(char **cpy, int y, int x)
 }
 
 // envoie les différent check puis 
-// vérifie si des élements n'ont pas été touché par floodfill et sont donc inatteignables
+// vérifie si des élements n'ont pas été touché 
+// par floodfill et sont donc inatteignables
 int	validate_map(t_game *game)
 {
 	char	**cpy;
@@ -108,9 +109,9 @@ int	validate_map(t_game *game)
 	if (!check_walls(game))
 		return (send_error("➜ invalid map walls"), 0);
 	if (!count_elements(game))
-		return (send_error("➜ invalid count of element"),0);
+		return (send_error("➜ invalid count of element"), 0);
 	if (!copy_map(game, &cpy))
-		return (send_error("➜ failled at copying map"),0);
+		return (send_error("➜ failled at copying map"), 0);
 	flood_fill(cpy, game->p_y, game->p_x);
 	while (cpy[y])
 	{
@@ -119,7 +120,7 @@ int	validate_map(t_game *game)
 		{
 			if (cpy[y][x] == 'C' || cpy[y][x] == 'E')
 				return (send_error("➜ E or C unreachable"),
-				free_tab(cpy, game->map_rows - 1), 0);
+					free_tab(cpy, game->map_rows - 1), 0);
 			x++;
 		}
 		y++;

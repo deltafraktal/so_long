@@ -6,13 +6,15 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:16:11 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/19 20:13:24 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/20 03:51:41 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-int close_window(t_game *game, int kill)
+#ifdef __linux__
+
+int	close_window(t_game *game, int kill)
 {
 	if (!game)
 		return (0);
@@ -21,14 +23,30 @@ int close_window(t_game *game, int kill)
 		free_tab(game->map, game->map_rows - 1);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
-#ifdef __linux__
 	if (game->mlx)
 		mlx_destroy_display(game->mlx);
-#endif
 	if (kill)
 		exit(1);
 	return (0);
 }
+
+#else
+
+int	close_window(t_game *game, int kill)
+{
+	if (!game)
+		return (0);
+	free_textures(game);
+	if (game->map)
+		free_tab(game->map, game->map_rows - 1);
+	if (game->win)
+		mlx_destroy_window(game->mlx, game->win);
+	if (kill)
+		exit(1);
+	return (0);
+}
+
+#endif
 
 int	move_p(t_game *game, int y, int x)
 {
@@ -60,7 +78,7 @@ int	handle_keys(int keycode, t_game *game)
 	if (keycode == KEY_ESC)
 		close_window(game, 1);
 	if (game->won == 2)
-        return (0);
+		return (0);
 	else if (keycode == KEY_A || keycode == KEY_LEFT)
 		move_p(game, game->p_y, game->p_x - 1);
 	else if (keycode == KEY_D || keycode == KEY_RIGHT)

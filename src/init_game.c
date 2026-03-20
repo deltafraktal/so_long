@@ -6,26 +6,26 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 22:12:07 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/19 20:36:03 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/20 03:49:46 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-int init_textures(t_game *game)
+int	init_textures(t_game *game)
 {
-    int     w;
-    int     h;
+	int	w;
+	int	h;
 
-    game->tex.p = mlx_xpm_file_to_image(game->mlx, "tex/p.xpm", &w, &h);
-    game->tex.f = mlx_xpm_file_to_image(game->mlx, "tex/f.xpm", &w, &h);
-    game->tex.w = mlx_xpm_file_to_image(game->mlx, "tex/w.xpm", &w, &h);
-    game->tex.c = mlx_xpm_file_to_image(game->mlx, "tex/c.xpm", &w, &h);
-    game->tex.e = mlx_xpm_file_to_image(game->mlx, "tex/e.xpm", &w, &h);
-    if (!game->tex.p ||!game->tex.f || !game->tex.w
+	game->tex.p = mlx_xpm_file_to_image(game->mlx, "tex/p.xpm", &w, &h);
+	game->tex.f = mlx_xpm_file_to_image(game->mlx, "tex/f.xpm", &w, &h);
+	game->tex.w = mlx_xpm_file_to_image(game->mlx, "tex/w.xpm", &w, &h);
+	game->tex.c = mlx_xpm_file_to_image(game->mlx, "tex/c.xpm", &w, &h);
+	game->tex.e = mlx_xpm_file_to_image(game->mlx, "tex/e.xpm", &w, &h);
+	if (!game->tex.p ||!game->tex.f || !game->tex.w
 		|| !game->tex.c || !game->tex.e)
-        return (send_error("➜ failed to load textures"), 1);
-    return (0);
+		return (send_error("➜ failed to load textures"), 1);
+	return (0);
 }
 
 int	init_game(t_game *game)

@@ -63,6 +63,7 @@ SRCS_B		= \
 	$(SRC_B_DIR)/animations.c \
 	$(SRC_B_DIR)/pop_up.c \
 	$(SRC_B_DIR)/enemies.c \
+	$(SRC_B_DIR)/camera.c \
     $(SRC_B_DIR)/utils.c
 
 OBJ         = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
