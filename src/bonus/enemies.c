@@ -41,15 +41,15 @@ void	set_x(t_game *game)
 	}
 }
 
-/* void	move_x(t_game *game)
+void	move_x(t_game *game)
 {
 	int	i;
 	int	new_x;
 
 	if (game->won == 2)
 		return ;
-	i = 0;
-	while (i < game->x_count)
+	i = -1;
+	while (++i < game->x_count)
 	{
 		new_x = game->x[i].x + game->x[i].dir;
 		if (game->map[game->x[i].y][new_x] == '1'
@@ -57,41 +57,15 @@ void	set_x(t_game *game)
 			game->x[i].dir *= -1;
 		else
 		{
-			game->map[game->x[i].y][game->x[i].x] = '0';
+			if (game->x[i].under == 'C')
+				game->map[game->x[i].y][game->x[i].x] = 'C';
+			else
+				game->map[game->x[i].y][game->x[i].x] = '0';
+			game->x[i].under = game->map[game->x[i].y][new_x];
 			game->x[i].x = new_x;
 			if (new_x == game->p_x && game->x[i].y == game->p_y)
 				pop_up(game, 1);
 			game->map[game->x[i].y][game->x[i].x] = 'X';
 		}
-		i++;
 	}
-} */
-
-
-/* void	move_x(t_game *game)
-{
-	int	i;
-	int	new_x;
-
-	if (game->won == 2)
-		return ;
-	i = 0;
-	while (i < game->x_count)
-	{
-		new_x = game->x[i].x + game->x[i].dir;
-		if (game->map[game->x[i].y][new_x] == '1'
-			|| game->map[game->x[i].y][new_x] == 'E')
-			game->x[i].dir *= -1;
-		else if (game->map[game->x[i].y][new_x] == 'C')
-		game->map[game->x[i].y][game->x[i].x] = 'C';	
-		else
-		{
-			game->map[game->x[i].y][game->x[i].x] = '0';
-			game->x[i].x = new_x;
-			if (new_x == game->p_x && game->x[i].y == game->p_y)
-				pop_up(game, 1);
-			game->map[game->x[i].y][game->x[i].x] = 'X';
-		}
-		i++;
-	}
-} */
+}

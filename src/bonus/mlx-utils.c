@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:16:11 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/20 03:25:16 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/21 03:33:20 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	move_p(t_game *game, int y, int x)
 	if (game->map[y][x] == '1')
 		return (0);
 	else if (game->map[y][x] == 'C')
-		ft_printf("c left : %d / %d\n", --game->c_left, game->c_count);
+		ft_printf("c left : %d / %d\n", (--game->c_left), game->c_count);
 	else if (game->map[y][x] == 'X')
 		return (ft_printf("YOU DEAD !\n"), pop_up(game, 1), 0);
 	else if (game->map[y][x] == 'E' && game->c_left == 0)

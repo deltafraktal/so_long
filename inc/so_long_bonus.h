@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 06:38:21 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/20 02:28:44 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/21 03:15:56 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct s_enemy
     int     x;
     int     y;
     int     dir;
+	char	under;
 }           t_enemy;
 
 typedef struct s_tex
