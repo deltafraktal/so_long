@@ -115,14 +115,19 @@ clean:
 	@echo "$(BOLD)$(YELLOW)🧹 Cleaning objects...$(END)"
 	@$(RM) -r $(OBJ_DIR)
 	@$(RM) -r $(OBJ_B_DIR)
-#@$(MAKE) -C libft clean --silent
-#@$(MAKE) -C $(MLX_DIR) clean --silent
+#	@$(MAKE) -C libft clean --silent
+#	@$(MAKE) -C $(MLX_DIR) clean --silent
 
 fclean: clean
 	@echo "$(BOLD)$(YELLOW)🗑  Removing executable...$(END)"
 	@$(RM) $(NAME)
 	@$(RM) $(NAME_B)
-# @$(MAKE) -C libft fclean --silent
+#	@$(MAKE) -C libft fclean --silent
+
+superclean: fclean
+	@echo "$(BOLD)$(YELLOW)BIG CLEANING...$(END)"
+	@$(MAKE) -C libft fclean --silent
+	@$(MAKE) -C $(MLX_DIR) clean --silent
 
 re: fclean all
 
@@ -144,4 +149,4 @@ ascii:
 	@echo "$(BOLD)$(GREEN)✨ so_long is ready ✨$(END)"
 	@echo "$(YELLOW)➜  use ./$(NAME) <map.ber>$(END)"
 
-.PHONY: all clean fclean re ascii mlx bonus
+.PHONY: all clean fclean re ascii mlx bonus superclean
