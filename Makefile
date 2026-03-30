@@ -88,6 +88,7 @@ bonus: $(LIBFT) $(MLX_LIB) $(OBJ_B)
 	@echo "$(BOLD)$(BLUE)🔗 Linking executable BONUS...$(END)"
 	@$(CC) $(CFLAGS) $(OBJ_B) $(LIBFT) $(MLX_FLAG) -o $(NAME_B)
 	@echo "$(BOLD)$(GREEN)✔ $(NAME_B) built BONUS successfully$(END)"
+	@$(MAKE) ascii
 
 # ── Libraries ─────────────────────────────────────────────────────────────────
 
@@ -134,10 +135,6 @@ superclean: fclean
 re: fclean all
 
 mlx: MLX_DIR = mlx
-mlx: MLX_LIB = mlx/libmlx.a
-mlx: MLX_FLAG = -L mlx -lmlx -framework OpenGL -framework AppKit
-mlx: $(NAME)
-	@echo "$(GREEN)✔ built with ./mlx$(END)"mlx: MLX_DIR = mlx
 mlx: MLX_LIB = mlx/libmlx.a
 mlx: MLX_FLAG = -L mlx -lmlx -framework OpenGL -framework AppKit
 mlx: $(NAME)
