@@ -6,13 +6,13 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 04:01:45 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/20 03:48:42 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/30 04:42:24 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long_bonus.h"
 
-// verifie l'extension de la map :P
+// verify map extension :P
 int	verif_map_extension(char *s)
 {
 	int	len;
@@ -25,7 +25,7 @@ int	verif_map_extension(char *s)
 	return (0);
 }
 
-// verifie qu'il n'y a pas de char indesirable
+// verify that there are no undesirable characters
 int	check_char(char *line)
 {
 	int		i;
@@ -42,7 +42,7 @@ int	check_char(char *line)
 	return (0);
 }
 
-// li, check les char, et que c'est bien un rectangle
+// read map, check chars and that it's rectangle
 int	read_map(t_game *game, char *av)
 {
 	int		fd;
@@ -70,7 +70,7 @@ int	read_map(t_game *game, char *av)
 	return (1);
 }
 
-// set la map en tableau
+// set map as tab
 int	set_map(t_game *game, char *av)
 {
 	int		fd;
@@ -99,9 +99,9 @@ int	set_map(t_game *game, char *av)
 	return (1);
 }
 
-// vérifier la validité de la carte (murs, joueur, collectibles, sortie),
-// et initialiser les positions du joueur, etc.
-// Retourner 0 en cas de succès
+// verify the map is valid, with a path from player to exit and collectibles
+// and init player position etc
+// return 0 if success
 int	parse(t_game *game, char *av)
 {
 	if (!verif_map_extension(av))

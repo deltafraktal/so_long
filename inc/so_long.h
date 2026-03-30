@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 06:38:21 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/19 20:24:39 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/30 04:48:24 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ int		line_len(char *line);
 char	*strdup_no_newline(const char *s1);
 
 //mlx utils
-int		close_window(t_game *game, int kill);
+int		close_window(t_game *game);
 int		move_p(t_game *game, int x, int y);
 int		handle_keys(int keycode, t_game *game);
 

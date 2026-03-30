@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 06:38:21 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/21 03:15:56 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/30 04:57:11 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,10 +119,12 @@ typedef struct s_game
 	int			frame_count;
 	t_tex		tex;
     t_enemy     *x;
-    int     cam_x;   // offset caméra en tiles
+	void		*win2;
+	void		*end_img;
+    int     cam_x;
     int     cam_y;
-    int     view_w;  // largeur viewport en tiles  ex: 10
-    int     view_h;  // hauteur viewport en tiles  ex: 10
+    int     view_w;
+    int     view_h;
 } 	t_game;
 
 // function
@@ -141,7 +143,7 @@ int		line_len(char *line);
 char	*strdup_no_newline(const char *s1);
 
 //mlx utils
-int		close_window(t_game *game, int kill);
+int		close_window(t_game *game);
 int		close_game(t_game *game);
 int		move_p(t_game *game, int x, int y);
 int		handle_keys(int keycode, t_game *game);

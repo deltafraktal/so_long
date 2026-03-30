@@ -6,13 +6,13 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 04:01:45 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/20 03:58:37 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/30 04:42:13 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-// verifie l'extension de la map :P
+// verify the map extension :P
 int	verif_map_extension(char *s)
 {
 	int	len;
@@ -25,7 +25,7 @@ int	verif_map_extension(char *s)
 	return (0);
 }
 
-// verifie qu'il n'y a pas de char indesirable
+// verify theres no undesired char
 int	check_char(char *line)
 {
 	int		i;
@@ -41,7 +41,7 @@ int	check_char(char *line)
 	return (0);
 }
 
-//li, check les char, et que c'est bien un rectangle
+//read, check chars,and that it is rectangle
 int	read_map(t_game *game, char *av)
 {
 	int		fd;
@@ -66,7 +66,7 @@ int	read_map(t_game *game, char *av)
 	return (1);
 }
 
-// set la map en tableau
+// set map and tab
 int	set_map(t_game *game, char *av)
 {
 	int		fd;
@@ -86,7 +86,8 @@ int	set_map(t_game *game, char *av)
 	{
 		game->map[i] = strdup_no_newline(line);
 		if (!game->map[i])
-			return (send_error("➜ strdup failed"), free(line), close(fd), 0);
+			return (send_error("➜ strdup failed"), free_tab(game->map, i - 1),
+				free(line), close(fd), 0);
 		free(line);
 		i++;
 		line = get_next_line(fd);
@@ -95,9 +96,9 @@ int	set_map(t_game *game, char *av)
 	return (1);
 }
 
-// vérifier la validité de la carte (murs, joueur, collectibles, sortie),
-// et initialiser les positions du joueur, etc.
-// Retourner 0 en cas de succès
+// verify the map is valid, with a path from player to exit and collectibles
+// and init player position etc
+// return 0 if success
 int	parse(t_game *game, char *av)
 {
 	if (!verif_map_extension(av))

@@ -55,8 +55,10 @@ SRCS        = \
 SRCS_B		= \
 	$(SRC_B_DIR)/main.c \
     $(SRC_B_DIR)/init_game.c \
-	$(SRC_B_DIR)/mlx-utils.c \
+	$(SRC_B_DIR)/handle-keys.c \
+	$(SRC_B_DIR)/close-game-window.c \
 	$(SRC_B_DIR)/error_and_free.c \
+	$(SRC_B_DIR)/free_textures.c \
     $(SRC_B_DIR)/parse_and_set.c \
 	$(SRC_B_DIR)/check_map_and_path.c \
 	$(SRC_B_DIR)/render.c \

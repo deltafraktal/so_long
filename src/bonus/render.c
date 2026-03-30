@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/18 18:21:18 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/20 03:38:48 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/30 05:36:54 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,8 @@ void	render_moves_count(t_game *g)
 	int		x;
 
 	str = ft_itoa(g->moves);
+	/* if (!str)
+    	return ; */
 	i = 0;
 	x = 23;
 	while (str[i])

@@ -6,13 +6,13 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 22:12:07 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/20 03:56:47 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/03/30 04:44:31 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-// verifie que la map est bien fermée
+// verify map is surrounded by wall
 int	check_walls(t_game *game)
 {
 	int	i;
@@ -34,8 +34,8 @@ int	check_walls(t_game *game)
 	return (1);
 }
 
-// verifie qu'il y a le bon nombre d'element dans la map 
-//et set la position du player
+// verify there's the right number of elements
+// and set player position
 int	count_elements(t_game *game)
 {
 	int	y;
@@ -64,7 +64,7 @@ int	count_elements(t_game *game)
 	return (game->p_count == 1 && game->e_count == 1 && game->c_count >= 1);
 }
 
-// fais une copy de la map pour floodfill ensuite
+// copy map for floodflill
 int	copy_map(t_game *game, char ***cpy)
 {
 	int	i;
@@ -84,7 +84,7 @@ int	copy_map(t_game *game, char ***cpy)
 	return (1);
 }
 
-// remplit toute les cases atteignable par 'o'
+// fill cases reachable from player position with 'o'
 void	flood_fill(char **cpy, int y, int x)
 {
 	if (cpy[y][x] == 'o' || cpy[y][x] == '1')
@@ -96,9 +96,9 @@ void	flood_fill(char **cpy, int y, int x)
 	flood_fill(cpy, y, x - 1);
 }
 
-// envoie les différent check puis 
-// vérifie si des élements n'ont pas été touché 
-// par floodfill et sont donc inatteignables
+// send divers checks
+// verify if some elements haven't been reached
+// pby floodfill and are still unreachable
 int	validate_map(t_game *game)
 {
 	char	**cpy;
