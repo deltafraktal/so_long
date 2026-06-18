@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:16:11 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/30 05:34:05 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/06/18 21:32:19 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,13 @@
 
 int	close_window(t_game *game)
 {
+	cleanup(game);
+	exit(0);
+	return (0);
+}
+
+int	cleanup(t_game *game)
+{
 	if (!game)
 		return (0);
 	free_textures(game);
@@ -24,8 +31,10 @@ int	close_window(t_game *game)
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)
+	{
 		mlx_destroy_display(game->mlx);
-	exit(0);
+		free(game->mlx);
+	}
 	return (0);
 }
 

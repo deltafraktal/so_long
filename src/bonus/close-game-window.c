@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:16:11 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/30 05:22:45 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/06/18 18:33:03 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ int	close_window(t_game *game)
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)
+	{
 		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+	}
 	exit(0);
 	return (0);
 }
