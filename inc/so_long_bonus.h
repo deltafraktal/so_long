@@ -48,41 +48,39 @@
 
 // KEYS
 # ifdef __linux__
-#	define KEY_ESC    65307
-#  define KEY_W      119
-#  define KEY_A      97
-#  define KEY_S      115
-#  define KEY_D      100
-#  define KEY_UP     65362
-#  define KEY_DOWN   65364
-#  define KEY_LEFT   65361
-#  define KEY_RIGHT  65363
+#	define KEY_ESC	65307
+#  define KEY_W		119
+#  define KEY_A		97
+#  define KEY_S		115
+#  define KEY_D		100
+#  define KEY_UP	65362
+#  define KEY_DOWN	65364
+#  define KEY_LEFT	65361
+#  define KEY_RIGHT	65363
+
+#  define X_SPEED	25
+#  define ALL_SPEED	40
 # else
-#  define KEY_ESC    53
-#  define KEY_W      13
-#  define KEY_A      0
-#  define KEY_S      1
-#  define KEY_D      2
-#  define KEY_UP     126
-#  define KEY_DOWN   125
-#  define KEY_LEFT   123
-#  define KEY_RIGHT  124
-/* #  define KEY_ESC    65307
-#  define KEY_W      119
-#  define KEY_A      97
-#  define KEY_S      115
-#  define KEY_D      100
-#  define KEY_UP     65362
-#  define KEY_DOWN   65364
-#  define KEY_LEFT   65361
-#  define KEY_RIGHT  65363 */
+#  define KEY_ESC	53
+#  define KEY_W		13
+#  define KEY_A		0
+#  define KEY_S		1
+#  define KEY_D		2
+#  define KEY_UP	126
+#  define KEY_DOWN	125
+#  define KEY_LEFT	123
+#  define KEY_RIGHT	124
+
+#  define X_SPEED   10
+#  define ALL_SPEED 10
+
 # endif
 
 typedef struct s_enemy
 {
-    int     x;
-    int     y;
-    int     dir;
+	int     x;
+	int     y;
+	int     dir;
 	char	under;
 }           t_enemy;
 
@@ -96,7 +94,7 @@ typedef struct s_tex
 	void	*w;
 	void	*c[2];
 	void	*e[8];
-    void	*x[3];
+	void	*x[3];
 	void	*d[10];
 }			t_tex;
 
@@ -108,7 +106,7 @@ typedef struct s_game
 	int			map_rows;
 	int			map_cols;
 	int			p_count;
-    int         x_count;
+	int         x_count;
 	int			e_count;
 	int			c_count;
 	int			c_left;
@@ -118,13 +116,14 @@ typedef struct s_game
 	int			won;
 	int			frame_count;
 	t_tex		tex;
-    t_enemy     *x;
+	t_enemy		*x;
 	void		*win2;
 	void		*end_img;
-    int     cam_x;
-    int     cam_y;
-    int     view_w;
-    int     view_h;
+	int			cam_x;
+	int			cam_y;
+	int			view_w;
+	int			view_h;
+	int			delay;
 } 	t_game;
 
 // function
@@ -134,7 +133,7 @@ int	main(int ac, char **av);
 //free and errors
 int		send_error(char *msg);
 void	free_tab(char **tab, int i);
-void destroy_enemies_img(t_game *game);
+void 	destroy_enemies_img(t_game *game);
 void	free_textures(t_game *game);
 void	short_destroy_image(t_game * game, void *img);
 
@@ -143,6 +142,7 @@ int		line_len(char *line);
 char	*strdup_no_newline(const char *s1);
 
 //mlx utils
+int		cleanup(t_game *game);
 int		close_window(t_game *game);
 int		close_game(t_game *game);
 int		move_p(t_game *game, int x, int y);
@@ -173,7 +173,7 @@ int		init_game(t_game *game);
 // render
 void	render_walls(t_game *game);
 void	render_background(t_game *game);
-void *get_tile_img(t_game *game, char c);
+void 	*get_tile_img(t_game *game, char c);
 void	render_elements(t_game *game);
 void	put_img(t_game *g, void *img, int y, int x);
 void	render_moves_count(t_game *game);

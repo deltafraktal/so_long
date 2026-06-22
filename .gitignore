@@ -3,3 +3,8 @@ a.out
 .dSYM
 so_long_bonus.dSYM
 so_long.dSYM
+*.a
+libft/obj/
+obj/
+so_long
+so_long_bonus

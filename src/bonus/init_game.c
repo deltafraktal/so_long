@@ -88,6 +88,7 @@ int	init_game(t_game *game)
 	game->map_rows = 0;
 	game->map_cols = 0;
 	game->p_count = 0;
+	game->x_count = 0;
 	game->e_count = 0;
 	game->c_count = 0;
 	game->c_left = 0;
@@ -97,9 +98,13 @@ int	init_game(t_game *game)
 	game->won = 0;
 	game->frame_count = 0;
 	ft_memset(&game->tex, 0, sizeof(t_tex));
-	/* game->cam_x = 0;
-	game->cam_y = 0; */
+	game->x = NULL;
 	game->win2 = NULL;
 	game->end_img = NULL;
+	game->cam_x = 0;
+    game->cam_y = 0;
+    game->view_w = 0;
+	game->view_h = 0;
+	game->delay = 0;
 	return (0);
 }

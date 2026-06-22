@@ -29,10 +29,12 @@ void	set_x(t_game *game)
 		while (x < game->map_cols - 1)
 		{
 			if (game->map[y][x] == 'X')
+
 			{
 				game->x[i].y = y;
 				game->x[i].x = x;
 				game->x[i].dir = 1;
+				game->x[i].under = '0';
 				i++;
 			}
 			x++;

@@ -16,13 +16,18 @@
 
 int	close_window(t_game *game)
 {
+	cleanup(game);
+	exit(0);
+	return (0);
+}
+
+int	cleanup(t_game *game)
+{
 	if (!game)
 		return (0);
 	free_textures(game);
 	if (game->map)
 		free_tab(game->map, game->map_rows - 1);
-	if (game->x)
-		free(game->x);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)
@@ -30,7 +35,6 @@ int	close_window(t_game *game)
 		mlx_destroy_display(game->mlx);
 		free(game->mlx);
 	}
-	exit(0);
 	return (0);
 }
 

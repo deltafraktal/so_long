@@ -50,7 +50,7 @@ int	read_map(t_game *game, char *av)
 
 	fd = open(av, O_RDONLY);
 	if (fd == -1)
-		return (send_error("➜ fill won't open"), 1);
+		return (send_error("➜ fill won't open"), 0);
 	line = get_next_line(fd);
 	if (!line)
 	{
@@ -79,7 +79,7 @@ int	set_map(t_game *game, char *av)
 
 	fd = open(av, O_RDONLY);
 	if (fd == -1)
-		return (send_error("➜ fill won't open"), 0);
+		return (send_error("➜ fill won't open huhu"), 0);
 	game->map = malloc(sizeof(char *) * (game->map_rows + 1));
 	if (!game->map)
 		return (close(fd), send_error("➜ malloc map failed"), 0);
@@ -111,7 +111,7 @@ int	parse(t_game *game, char *av)
 	if (!set_map(game, av))
 		return (1);
 	if (!validate_map(game))
-		return (free_tab(game->map, game->map_rows - 1), 1);
+		return (free_tab(game->map, game->map_rows - 1), game->map = NULL,  1);
 	set_x(game);
 	return (0);
 }

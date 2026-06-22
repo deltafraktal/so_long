@@ -41,7 +41,7 @@ int	main(int ac, char **av)
 	if (init_textures(&game))
 		return (free_textures(&game), 1);
 	if (parse(&game, av[1]))
-		return (1);
+		return (cleanup(&game), 1);
 	if (init_window(&game))
 		return (1);
 	update_camera(&game);

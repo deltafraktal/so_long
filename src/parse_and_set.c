@@ -120,6 +120,6 @@ int	parse(t_game *game, char *av)
 	if (!set_map(game, av))
 		return (1);
 	if (!validate_map(game))
-		return (free_tab(game->map, game->map_rows - 1), 1);
+		return (free_tab(game->map, game->map_rows - 1), game->map = NULL, 1);
 	return (0);
 }
