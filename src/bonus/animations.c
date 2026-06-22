@@ -12,16 +12,49 @@
 
 #include "../inc/so_long_bonus.h"
 
+
+# ifdef __linux__
+int	animation(t_game *game)
+{
+	game->delay++;
+	game->frame_count++;
+
+	if ((game->delay % 500) == 0)
+	{
+		move_x(game);
+		game->delay = 0;
+	}
+
+		if ((game->delay % 4000) == 0)
+	{
+		render(game);
+	}
+	return (0);
+}
+
+/* int	animation(t_game *game)
+{
+	game->frame_count++;
+	if (game->frame_count % X_SPEED == 0)
+		move_x(game);
+	render(game);
+	return (0);
+} */
+# else
 int	animation(t_game *game)
 {
 	game->frame_count++;
-	if (game->frame_count % 10 == 0)
+	if (game->frame_count % 25 == 0)
 		move_x(game);
 	render(game);
 	return (0);
 }
 
-void	render_animation(t_game *game)
+# endif
+
+
+
+/* void	render_animation(t_game *game)
 {
 	int	y;
 	int	x;
@@ -39,5 +72,5 @@ void	render_animation(t_game *game)
 			x++;
 		}
 		y++;
-	}
-}
+	} 
+}*/

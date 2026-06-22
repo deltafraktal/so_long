@@ -24,7 +24,7 @@ int	init_window(t_game *game)
 			game->view_w * TILE_SIZE,
 			game->view_h * TILE_SIZE, "so_loooong");
 	if (!game->win)
-		return (send_error("➜ mlx new window failed"), 1);
+		return (send_error("➜ mlx new window failed"), cleanup(game), 1);
 	return (0);
 }
 
@@ -41,7 +41,7 @@ int	main(int ac, char **av)
 	if (init_textures(&game))
 		return (free_textures(&game), 1);
 	if (parse(&game, av[1]))
-		return (1);
+		return (cleanup(&game), 1);
 	if (init_window(&game))
 		return (1);
 	update_camera(&game);

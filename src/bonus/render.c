@@ -54,17 +54,17 @@ void	render_background(t_game *game)
 void	*get_tile_img(t_game *game, char c)
 {
 	if (c == 'C')
-		return (game->tex.c[game->frame_count / 10 % 2]);
+		return (game->tex.c[game->frame_count / ALL_SPEED % 2]);
 	if (c == 'E' && game->c_left > 0)
 		return (game->tex.f);
 	if (c == 'E' && game->c_left == 0)
-		return (game->tex.e[game->frame_count / 10 % 3]);
+		return (game->tex.e[game->frame_count / ALL_SPEED % 3]);
 	if (c == 'P' || c == 'Z')
 		return (game->tex.p[0]);
 	if (c == '0')
 		return (game->tex.f);
 	if (c == 'X')
-		return (game->tex.x[game->frame_count / 10 % 3]);
+		return (game->tex.x[game->frame_count / ALL_SPEED % 3]);
 	return (NULL);
 }
 
