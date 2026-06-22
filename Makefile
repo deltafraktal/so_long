@@ -10,7 +10,7 @@ RM          = rm -f
 SRC_DIR     = src
 SRC_B_DIR   = src/bonus
 OBJ_DIR     = obj
-OBJ_B_DIR     = obj/bonus
+OBJ_B_DIR   = obj/bonus
 
 # ── Colors ────────────────────────────────────────────────────────────────────
 END         := \033[0m
