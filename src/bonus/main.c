@@ -24,7 +24,7 @@ int	init_window(t_game *game)
 			game->view_w * TILE_SIZE,
 			game->view_h * TILE_SIZE, "so_loooong");
 	if (!game->win)
-		return (send_error("➜ mlx new window failed"), 1);
+		return (send_error("➜ mlx new window failed"), cleanup(game), 1);
 	return (0);
 }
 

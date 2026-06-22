@@ -30,6 +30,8 @@ int	cleanup(t_game *game)
 		free_tab(game->map, game->map_rows - 1);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
+	if (game->x)
+		free(game->x);
 	if (game->mlx)
 	{
 		mlx_destroy_display(game->mlx);
@@ -48,7 +50,15 @@ int	close_game(t_game *game)
 	if (game->x)
 		free(game->x);
 	if (game->mlx)
+	if (game->end_img)
+		mlx_destroy_image(game->mlx, game->end_img);
+	if (game->win2)
+		mlx_destroy_window(game->mlx, game->win2);
+	if (game->mlx)
+	{
 		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+	}
 	exit(0);
 	return (0);
 }

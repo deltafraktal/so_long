@@ -42,6 +42,18 @@ int	check_char(char *line)
 	return (0);
 }
 
+static void	gnl_flush(int fd)
+{
+    char	*line;
+
+    line = get_next_line(fd);
+    while (line)
+    {
+        free(line);
+        line = get_next_line(fd);
+    }
+}
+
 // read map, check chars and that it's rectangle
 int	read_map(t_game *game, char *av)
 {
@@ -61,7 +73,7 @@ int	read_map(t_game *game, char *av)
 	while (line)
 	{
 		if (check_char(line) || line_len(line) != game->map_cols)
-			return (send_error("➜ invalid map"), free(line), close(fd), 0);
+			return (send_error("➜ invalid map"), free(line), gnl_flush(fd), close(fd), 0);
 		game->map_rows++;
 		free(line);
 		line = get_next_line(fd);

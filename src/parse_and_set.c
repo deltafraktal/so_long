@@ -61,7 +61,7 @@ int	read_map(t_game *game, char *av)
 
 	fd = open(av, O_RDONLY);
 	if (fd == -1)
-		return (send_error("➜ fill won't open"), 1);
+		return (send_error("➜ fill won't open"), 0);
 	line = get_next_line(fd);
 	if (!line)
 		return (send_error("➜ empty map file"), close(fd), 0);
