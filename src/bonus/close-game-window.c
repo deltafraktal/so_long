@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:16:11 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/30 05:22:45 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/06/18 06:26:32 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	close_game(t_game *game)
 		free_tab(game->map, game->map_rows - 1);
 	if (game->x)
 		free(game->x);
-	if (game->end_img)	
+	if (game->end_img)
 		mlx_destroy_image(game->mlx, game->end_img);
 	exit(0);
 }

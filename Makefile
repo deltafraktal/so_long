@@ -3,7 +3,7 @@
 # ══════════════════════════════════════════════════════════════════════════════
 
 NAME        = so_long
-NAME_B        = so_long_bonus
+NAME_B      = so_long_bonus
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror
 RM          = rm -f
@@ -134,11 +134,6 @@ superclean: fclean
 
 re: fclean all
 
-mlx: MLX_DIR = mlx
-mlx: MLX_LIB = mlx/libmlx.a
-mlx: MLX_FLAG = -L mlx -lmlx -framework OpenGL -framework AppKit
-mlx: $(NAME)
-	@echo "$(GREEN)✔ built with ./mlx$(END)"
 # ── ASCII art ─────────────────────────────────────────────────────────────────
 
 ascii:
@@ -148,4 +143,4 @@ ascii:
 	@echo "$(BOLD)$(GREEN)✨ so_long is ready ✨$(END)"
 	@echo "$(YELLOW)➜  use ./$(NAME) <map.ber>$(END)"
 
-.PHONY: all clean fclean re ascii mlx bonus superclean
+.PHONY: all clean fclean re ascii bonus superclean

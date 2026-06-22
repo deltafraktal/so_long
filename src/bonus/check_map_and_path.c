@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 22:12:07 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/30 04:45:12 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/06/18 06:29:45 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	flood_fill(char **cpy, int y, int x)
 
 // send divers checks
 // verify if some elements haven't been reached
-// pby floodfill and are still unreachable
+// by floodfill and are still unreachable
 int	validate_map(t_game *game)
 {
 	char	**cpy;
