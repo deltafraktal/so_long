@@ -6,16 +6,18 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 06:38:21 by dgeara            #+#    #+#             */
-/*   Updated: 2026/06/18 21:28:21 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/06/23 01:58:46 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "../mlx/mlx.h"
-# include "../minilibx_opengl_20191021-1/mlx.h"
-# include "../minilibx-linux/mlx.h"
+# ifdef __linux__
+#  include "../minilibx-linux/mlx.h"
+# else
+#  include "../minilibx_opengl_20191021-1/mlx.h"
+# endif
 # include "../libft/inc/libft.h"
 # include <fcntl.h>
 # include <stdio.h>
@@ -45,7 +47,11 @@
 
 // KEYS
 # ifdef __linux__
+<<<<<<< HEAD
+#  define KEY_ESC    65307
+=======
 #	define KEY_ESC    65307
+>>>>>>> refs/remotes/origin/main
 #  define KEY_W      119
 #  define KEY_A      97
 #  define KEY_S      115

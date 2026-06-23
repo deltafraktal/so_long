@@ -10,7 +10,7 @@ RM          = rm -f
 SRC_DIR     = src
 SRC_B_DIR   = src/bonus
 OBJ_DIR     = obj
-OBJ_B_DIR     = obj/bonus
+OBJ_B_DIR   = obj/bonus
 
 # ── Colors ────────────────────────────────────────────────────────────────────
 END         := \033[0m
@@ -134,11 +134,6 @@ superclean: fclean
 
 re: fclean all
 
-mlx: MLX_DIR = mlx
-mlx: MLX_LIB = mlx/libmlx.a
-mlx: MLX_FLAG = -L mlx -lmlx -framework OpenGL -framework AppKit
-mlx: $(NAME)
-	@echo "$(GREEN)✔ built with ./mlx$(END)"
 # ── ASCII art ─────────────────────────────────────────────────────────────────
 
 ascii:
@@ -148,4 +143,4 @@ ascii:
 	@echo "$(BOLD)$(GREEN)✨ so_long is ready ✨$(END)"
 	@echo "$(YELLOW)➜  use ./$(NAME) <map.ber>$(END)"
 
-.PHONY: all clean fclean re ascii mlx bonus superclean
+.PHONY: all clean fclean re ascii bonus superclean
