@@ -6,11 +6,11 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 22:12:07 by dgeara            #+#    #+#             */
-/*   Updated: 2026/06/23 03:02:36 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/06/23 17:58:02 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long_bonus.h"
+#include "../../inc/so_long_bonus.h"
 
 // verify the map is surrounded by wall
 int	check_walls(t_game *game)

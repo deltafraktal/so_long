@@ -6,16 +6,19 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 06:38:21 by dgeara            #+#    #+#             */
-/*   Updated: 2026/06/23 16:28:34 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/06/23 17:57:29 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_BONUS_H
 # define SO_LONG_BONUS_H
 
-# include "../mlx/mlx.h"
-# include "../minilibx_opengl_20191021-1/mlx.h"
-# include "../minilibx-linux/mlx.h"
+# ifdef __linux__
+#  include "../minilibx-linux/mlx.h"
+# else
+#  include "../minilibx_opengl_20191021-1/mlx.h"
+# endif
+# include "../libft/inc/libft.h"
 # include "../libft/inc/libft.h"
 # include <fcntl.h>
 # include <stdio.h>

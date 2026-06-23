@@ -6,11 +6,11 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 06:35:10 by dgeara            #+#    #+#             */
-/*   Updated: 2026/06/23 02:25:24 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/06/23 17:58:02 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long_bonus.h"
+#include "../../inc/so_long_bonus.h"
 
 #ifdef __linux__
 

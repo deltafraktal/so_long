@@ -6,11 +6,11 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 04:01:45 by dgeara            #+#    #+#             */
-/*   Updated: 2026/06/23 03:03:43 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/06/23 17:58:02 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long_bonus.h"
+#include "../../inc/so_long_bonus.h"
 
 // verify map extension :P
 int	verif_map_extension(char *s)

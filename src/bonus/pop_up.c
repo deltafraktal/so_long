@@ -6,11 +6,11 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 17:22:39 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/30 05:12:42 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/06/23 17:58:02 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long_bonus.h"
+#include "../../inc/so_long_bonus.h"
 
 int	pop_up(t_game *g, int dead)
 {

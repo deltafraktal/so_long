@@ -6,11 +6,11 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 22:42:38 by dgeara            #+#    #+#             */
-/*   Updated: 2026/06/23 04:07:16 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/06/23 17:58:02 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long_bonus.h"
+#include "../../inc/so_long_bonus.h"
 
 void	set_x(t_game *game)
 {

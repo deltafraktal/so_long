@@ -6,11 +6,11 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 04:21:29 by dgeara            #+#    #+#             */
-/*   Updated: 2026/06/23 16:29:17 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/06/23 18:53:31 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long_bonus.h"
+#include "../../inc/so_long_bonus.h"
 
 int	init_window(t_game *game)
 {
@@ -39,7 +39,7 @@ int	main(int ac, char **av)
 	if (!game.mlx)
 		return (send_error("➜ mlx not initialized"), 1);
 	if (init_textures(&game))
-		return (free_textures(&game), 1);
+		return (cleanup(&game), 1);
 	if (parse(&game, av[1]))
 		return (cleanup(&game), 1);
 	if (init_window(&game))
