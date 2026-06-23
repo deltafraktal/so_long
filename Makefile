@@ -62,6 +62,7 @@ SRCS_B		= \
     $(SRC_B_DIR)/parse_and_set.c \
 	$(SRC_B_DIR)/check_map_and_path.c \
 	$(SRC_B_DIR)/render.c \
+	$(SRC_B_DIR)/render2.c \
 	$(SRC_B_DIR)/animations.c \
 	$(SRC_B_DIR)/pop_up.c \
 	$(SRC_B_DIR)/enemies.c \

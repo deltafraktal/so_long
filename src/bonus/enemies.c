@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 22:42:38 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/30 05:00:21 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/06/23 04:07:16 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,8 @@ void	set_x(t_game *game)
 		while (x < game->map_cols - 1)
 		{
 			if (game->map[y][x] == 'X')
-
 			{
-				game->x[i].y = y;
-				game->x[i].x = x;
-				game->x[i].dir = 1;
-				game->x[i].under = '0';
+				game->x[i] = (t_enemy){.y = y, .x = x, .dir = 1, .under = '0'};
 				i++;
 			}
 			x++;

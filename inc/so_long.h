@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 06:38:21 by dgeara            #+#    #+#             */
-/*   Updated: 2026/06/23 01:58:46 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/06/23 16:56:44 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,11 @@
 
 // X11 Masks
 # define NO_MASK				0L
-# define KEY_PRESS_MASK			(1L<<0)
+/* # define KEY_PRESS_MASK			(1L << 0) */
 
 // KEYS
 # ifdef __linux__
-<<<<<<< HEAD
 #  define KEY_ESC    65307
-=======
-#	define KEY_ESC    65307
->>>>>>> refs/remotes/origin/main
 #  define KEY_W      119
 #  define KEY_A      97
 #  define KEY_S      115
@@ -70,28 +66,15 @@
 #  define KEY_DOWN   125
 #  define KEY_LEFT   123
 #  define KEY_RIGHT  124
-/* #  define KEY_ESC    65307
-#  define KEY_W      119
-#  define KEY_A      97
-#  define KEY_S      115
-#  define KEY_D      100
-#  define KEY_UP     65362
-#  define KEY_DOWN   65364
-#  define KEY_LEFT   65361
-#  define KEY_RIGHT  65363 */
 # endif
 
 typedef struct s_tex
 {
-	int		width;
-	int		height;
 	void	*p;
-	void	*pe;
 	void	*f;
 	void	*w;
 	void	*c;
 	void	*e;
-	void	*d;
 }			t_tex;
 
 typedef struct s_game
@@ -110,21 +93,22 @@ typedef struct s_game
 	int			moves;
 	int			won;
 	t_tex		tex;
-} 	t_game;
+}	t_game;
 
 // function
 // main
-int	main(int ac, char **av);
+int		main(int ac, char **av);
 
 //free and errors
 int		send_error(char *msg);
 void	free_tab(char **tab, int i);
 void	free_textures(t_game *game);
-void	short_destroy_image(t_game * game, void *img);
+void	short_destroy_image(t_game *game, void *img);
 
 //utils
 int		line_len(char *line);
 char	*strdup_no_newline(const char *s1);
+void	free_gnl(int fd);
 
 //mlx utils
 int		close_window(t_game *game);

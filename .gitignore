@@ -4,6 +4,7 @@ a.out
 so_long_bonus.dSYM
 so_long.dSYM
 *.a
+*.o
 libft/obj/
 obj/
 so_long

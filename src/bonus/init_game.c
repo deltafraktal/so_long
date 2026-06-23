@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 22:12:07 by dgeara            #+#    #+#             */
-/*   Updated: 2026/06/23 01:59:11 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/06/23 02:22:20 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,8 @@ int	init_game(t_game *game)
 	game->win2 = NULL;
 	game->end_img = NULL;
 	game->cam_x = 0;
-    game->cam_y = 0;
-    game->view_w = 0;
+	game->cam_y = 0;
+	game->view_w = 0;
 	game->view_h = 0;
 	game->delay = 0;
 	return (0);

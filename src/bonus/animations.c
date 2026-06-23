@@ -6,26 +6,24 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 06:35:10 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/20 03:27:41 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/06/23 02:25:24 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long_bonus.h"
 
+#ifdef __linux__
 
-# ifdef __linux__
 int	animation(t_game *game)
 {
 	game->delay++;
 	game->frame_count++;
-
 	if ((game->delay % 500) == 0)
 	{
 		move_x(game);
 		game->delay = 0;
 	}
-
-		if ((game->delay % 4000) == 0)
+	if ((game->delay % 4000) == 0)
 	{
 		render(game);
 	}
@@ -40,7 +38,8 @@ int	animation(t_game *game)
 	render(game);
 	return (0);
 } */
-# else
+#else
+
 int	animation(t_game *game)
 {
 	game->frame_count++;
@@ -50,9 +49,7 @@ int	animation(t_game *game)
 	return (0);
 }
 
-# endif
-
-
+#endif
 
 /* void	render_animation(t_game *game)
 {

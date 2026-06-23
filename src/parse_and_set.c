@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 04:01:45 by dgeara            #+#    #+#             */
-/*   Updated: 2026/06/18 21:34:55 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/06/23 17:04:25 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,6 @@ int	check_char(char *line)
 	return (0);
 }
 
-static void	gnl_flush(int fd)
-{
-    char	*line;
-
-    line = get_next_line(fd);
-    while (line)
-    {
-        free(line);
-        line = get_next_line(fd);
-    }
-}
-
 //read, check chars,and that it is rectangle
 int	read_map(t_game *game, char *av)
 {
@@ -69,7 +57,8 @@ int	read_map(t_game *game, char *av)
 	while (line)
 	{
 		if (check_char(line) || line_len(line) != game->map_cols)
-			return (send_error("➜ invalid map"), free(line), gnl_flush(fd), close(fd), 0);
+			return (send_error("➜ invalid map"), free_gnl(fd),
+				free(line), close(fd), 0);
 		game->map_rows++;
 		free(line);
 		line = get_next_line(fd);
@@ -99,7 +88,7 @@ int	set_map(t_game *game, char *av)
 		game->map[i] = strdup_no_newline(line);
 		if (!game->map[i])
 			return (send_error("➜ strdup failed"), free_tab(game->map, i - 1),
-				free(line), close(fd), 0);
+				free_gnl(fd), free(line), close(fd), 0);
 		free(line);
 		i++;
 		line = get_next_line(fd);

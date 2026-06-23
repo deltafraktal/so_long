@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 22:12:07 by dgeara            #+#    #+#             */
-/*   Updated: 2026/06/18 06:29:45 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/06/23 03:02:36 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,18 +89,6 @@ int	copy_map(t_game *game, char ***cpy)
 	}
 	(*cpy)[i] = NULL;
 	return (1);
-}
-
-// fill cases reachable from player position with 'o'
-void	flood_fill(char **cpy, int y, int x)
-{
-	if (cpy[y][x] == 'o' || cpy[y][x] == '1')
-		return ;
-	cpy[y][x] = 'o';
-	flood_fill(cpy, y + 1, x);
-	flood_fill(cpy, y - 1, x);
-	flood_fill(cpy, y, x + 1);
-	flood_fill(cpy, y, x - 1);
 }
 
 // send divers checks

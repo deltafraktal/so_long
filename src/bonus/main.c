@@ -6,7 +6,7 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 04:21:29 by dgeara            #+#    #+#             */
-/*   Updated: 2026/03/30 05:39:24 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/06/23 16:29:17 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(int ac, char **av)
 		return (1);
 	update_camera(&game);
 	render(&game);
-	mlx_hook(game.win, KEY_PRESS, KEY_PRESS_MASK, handle_keys, &game);
+	mlx_hook(game.win, KEY_PRESS, (1L << 0), handle_keys, &game);
 	mlx_hook(game.win, DESTROY_NOTIFY, NO_MASK, close_window, &game);
 	mlx_loop_hook(game.mlx, animation, &game);
 	mlx_loop(game.mlx);

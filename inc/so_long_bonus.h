@@ -6,12 +6,12 @@
 /*   By: dgeara <dgeara@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 06:38:21 by dgeara            #+#    #+#             */
-/*   Updated: 2026/06/18 17:52:18 by dgeara           ###   ########.fr       */
+/*   Updated: 2026/06/23 16:28:34 by dgeara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include "../mlx/mlx.h"
 # include "../minilibx_opengl_20191021-1/mlx.h"
@@ -44,11 +44,11 @@
 
 // X11 Masks
 # define NO_MASK				0L
-# define KEY_PRESS_MASK			(1L<<0)
+/* # define KEY_PRESS_MASK			(1L<<0) */
 
 // KEYS
 # ifdef __linux__
-#	define KEY_ESC	65307
+#  define KEY_ESC	65307
 #  define KEY_W		119
 #  define KEY_A		97
 #  define KEY_S		115
@@ -78,11 +78,11 @@
 
 typedef struct s_enemy
 {
-	int     x;
-	int     y;
-	int     dir;
+	int		x;
+	int		y;
+	int		dir;
 	char	under;
-}           t_enemy;
+}	t_enemy;
 
 typedef struct s_tex
 {
@@ -96,7 +96,7 @@ typedef struct s_tex
 	void	*e[8];
 	void	*x[3];
 	void	*d[10];
-}			t_tex;
+}	t_tex;
 
 typedef struct s_game
 {
@@ -106,7 +106,7 @@ typedef struct s_game
 	int			map_rows;
 	int			map_cols;
 	int			p_count;
-	int         x_count;
+	int			x_count;
 	int			e_count;
 	int			c_count;
 	int			c_left;
@@ -124,22 +124,23 @@ typedef struct s_game
 	int			view_w;
 	int			view_h;
 	int			delay;
-} 	t_game;
+}	t_game;
 
 // function
 // main
-int	main(int ac, char **av);
+int		main(int ac, char **av);
 
 //free and errors
 int		send_error(char *msg);
 void	free_tab(char **tab, int i);
-void 	destroy_enemies_img(t_game *game);
+void	destroy_enemies_img(t_game *game);
 void	free_textures(t_game *game);
-void	short_destroy_image(t_game * game, void *img);
+void	short_destroy_image(t_game *game, void *img);
 
 //utils
 int		line_len(char *line);
 char	*strdup_no_newline(const char *s1);
+void	free_gnl(int fd);
 
 //mlx utils
 int		cleanup(t_game *game);
@@ -165,15 +166,15 @@ int		validate_map(t_game *game);
 
 // init
 int		init_tex_digit(t_game *game);
-int     init_tex_x(t_game *game);
-int     init_text_elements(t_game *game);
+int		init_tex_x(t_game *game);
+int		init_text_elements(t_game *game);
 int		init_textures(t_game *game);
 int		init_game(t_game *game);
 
 // render
 void	render_walls(t_game *game);
 void	render_background(t_game *game);
-void 	*get_tile_img(t_game *game, char c);
+void	*get_tile_img(t_game *game, char c);
 void	render_elements(t_game *game);
 void	put_img(t_game *g, void *img, int y, int x);
 void	render_moves_count(t_game *game);
@@ -184,13 +185,13 @@ int		animation(t_game *game);
 void	render_animation(t_game *game);
 
 // enemies
-void set_x(t_game *game);
+void	set_x(t_game *game);
 void	move_x(t_game *game);
 
 // pop-ups
-int	pop_up(t_game *game, int end);
-int	handle_esc(int keycode, t_game *game);
+int		pop_up(t_game *game, int end);
+int		handle_esc(int keycode, t_game *game);
 
 // pop-ups
-void    update_camera(t_game *game);
+void	update_camera(t_game *game);
 #endif
