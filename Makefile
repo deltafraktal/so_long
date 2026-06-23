@@ -3,7 +3,7 @@
 # ══════════════════════════════════════════════════════════════════════════════
 
 NAME        = so_long
-NAME_B        = so_long_bonus
+NAME_B      = so_long_bonus
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror
 RM          = rm -f
