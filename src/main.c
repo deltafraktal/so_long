@@ -23,7 +23,7 @@ int	main(int ac, char **av)
 	if (!game.mlx)
 		return (send_error("➜ mlx not initialized"), 1);
 	if (init_textures(&game))
-		return (free_textures(&game), 1);
+		return (cleanup(&game), 1);
 	if (parse(&game, av[1]))
 		return (cleanup(&game), 1);
 	game.win = mlx_new_window(game.mlx,
